@@ -1,1 +1,1 @@
-For details, please see [http://bowfolios.github.io/](https://uhm-clubhouse.github.io/).
+For details, please see [https://uhm-clubhouse.github.io/](https://uhm-clubhouse.github.io/).
