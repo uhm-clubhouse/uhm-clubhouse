@@ -27,16 +27,18 @@ const MakeCard = () => (
   <Col>
     <Card className="h-100">
       <Card.Header>
-        <Card.Title>Club Name</Card.Title>
+        <Card.Title>Club Name Here</Card.Title>
       </Card.Header>
       <Card.Body>
         <Card.Text>
-          Club Description
+          Club Description Here
         </Card.Text>
         <Card.Text>
-          Interests
+          Interests Here
         </Card.Text>
-        <h5>Contacts</h5>
+        <Card.Text>
+          Contacts Here
+        </Card.Text>
       </Card.Body>
     </Card>
   </Col>
