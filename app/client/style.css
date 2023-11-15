@@ -21,10 +21,6 @@ body {
   color:  #100f0f;
 }
 
-/* When logged in we switch the NavBar to bg-dark so we need to override the styles to give light text. */
-.bg-dark span, .bg-dark a {
-  color: var(--bowfolio-navbar-text);
-}
 
 /* When logged in we highlight the selected route. */
 .bg-dark a.nav-link.active {
