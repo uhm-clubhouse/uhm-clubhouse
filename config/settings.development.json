@@ -1,4 +1,10 @@
 {
+  "defaultAccounts": [
+    { "email": "admin@foo.com", "password": "changeme", "role": "admin" },
+    { "email": "john@foo.com", "password": "changeme" },
+    { "email": "sadmin@foo.com", "password": "changeme" }
+  ],
+
   "defaultClubs" : [
     {
       "clubName": "Association for Computing Machinery at the University of Hawaii at Manoa (ACM)",
