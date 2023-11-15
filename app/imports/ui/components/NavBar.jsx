@@ -27,10 +27,9 @@ const NavBar = () => {
               <Nav.Link as={NavLink} id={ComponentIDs.homeMenuItem} to="/home" key="home">Home</Nav.Link>
             ) : ''}
             <Nav.Link as={NavLink} id={ComponentIDs.projectsMenuItem} to="/listing" key="list">Club Listing</Nav.Link>
-            <Nav.Link as={NavLink} id={ComponentIDs.interestsMenuItem} to="/createclub" key="create">Create Club</Nav.Link>
             {currentUser ? (
-              [<Nav.Link as={NavLink} id={ComponentIDs.addProjectMenuItem} to="/addProject" key="addP">Add Project</Nav.Link>,
-                <Nav.Link as={NavLink} id={ComponentIDs.filterMenuItem} to="/filter" key="filter">Filter</Nav.Link>]
+              [<Nav.Link as={NavLink} id={ComponentIDs.addProjectMenuItem} to="/yourclubs" key="clubs">Your Clubs</Nav.Link>,
+                <Nav.Link as={NavLink} id={ComponentIDs.filterMenuItem} to="/createclub" key="create">Create Club</Nav.Link>]
             ) : ''}
           </Nav>
           <Nav className="justify-content-end">

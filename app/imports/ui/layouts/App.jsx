@@ -13,9 +13,9 @@ import NotAuthorized from '../pages/NotAuthorized';
 import Projects from '../pages/Projects';
 import Home from '../pages/Home';
 import Filter from '../pages/Filter';
-import AddProject from '../pages/AddProject';
 import CreateClub from '../pages/CreateClub';
 import ClubsPage from '../pages/ClubListing';
+import ProfilesPage from '../pages/YourClubs';
 
 /* Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 const App = () => (
@@ -27,12 +27,11 @@ const App = () => (
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/signout" element={<SignOut />} />
-        <Route path="/createclub" element={<CreateClub />} />
         <Route path="/listing" element={<ClubsPage />} />
         <Route path="/projects" element={<Projects />} />
         <Route path="/home" element={<ProtectedRoute><Home /></ProtectedRoute>} />
-        <Route path="/filter" element={<ProtectedRoute><Filter /></ProtectedRoute>} />
-        <Route path="/addproject" element={<ProtectedRoute><AddProject /></ProtectedRoute>} />
+        <Route path="/createclub" element={<ProtectedRoute><CreateClub /></ProtectedRoute>} />
+        <Route path="/yourclubs" element={<ProtectedRoute><ProfilesPage /></ProtectedRoute>} />
         <Route path="/notauthorized" element={<NotAuthorized />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
