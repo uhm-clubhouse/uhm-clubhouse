@@ -37,6 +37,7 @@ body {
   background-color: #e3f7c0;
   color: var(--bowfolio-navbar-text);
   padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 .landing-white-background {
