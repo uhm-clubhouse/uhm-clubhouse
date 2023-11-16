@@ -13,7 +13,6 @@ import SignIn from '../pages/SignIn';
 import NotAuthorized from '../pages/NotAuthorized';
 import Projects from '../pages/Projects';
 import Home from '../pages/Home';
-import Filter from '../pages/Filter';
 import CreateClub from '../pages/CreateClub';
 import ClubsPage from '../pages/ClubListing';
 import ProfilesPage from '../pages/YourClubs';

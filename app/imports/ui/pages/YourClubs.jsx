@@ -1,43 +1,35 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Container, Card, Row, Col } from 'react-bootstrap';
+import { Container, Card, Row, Col, Badge } from 'react-bootstrap';
 import { useTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { _ } from 'meteor/underscore';
-import { Profiles } from '../../api/profiles/Profiles';
-import { ProfilesInterests } from '../../api/profiles/ProfilesInterests';
-import { ProfilesProjects } from '../../api/profiles/ProfilesProjects';
-import { Projects } from '../../api/projects/Projects';
 import LoadingSpinner from '../components/LoadingSpinner';
 import { pageStyle } from './pageStyles';
 import { PageIDs } from '../utilities/ids';
+import { Clubs } from '../../api/clubs/Clubs';
+import { ClubsInterests } from '../../api/clubs/ClubsInterests';
 
-/* Returns the Profile and associated Projects and Interests associated with the passed user email. */
-function getProfileData(email) {
-  const data = Profiles.collection.findOne({ email });
-  const interests = _.pluck(ProfilesInterests.collection.find({ profile: email }).fetch(), 'interest');
-  const projects = _.pluck(ProfilesProjects.collection.find({ profile: email }).fetch(), 'project');
-  const projectPictures = projects.map(project => Projects.collection.findOne({ name: project })?.picture);
-  // console.log(_.extend({ }, data, { interests, projects: projectPictures }));
-  return _.extend({}, data, { interests, projects: projectPictures });
+/* Gets the Clubs data as well as the Interests associated with the passed Clubs name. */
+function getClubData(clubName) {
+  const data = Clubs.collection.findOne({ clubName });
+  const interests = _.pluck(ClubsInterests.collection.find({ club: clubName }).fetch(), 'interest');
+  return _.extend({}, data, { interests });
 }
 
 /* Component for layout out a Profile Card. */
-const MakeCard = () => (
+const MakeCard = ({ club }) => (
   <Col>
     <Card className="h-100">
       <Card.Header>
-        <Card.Title>Club Name Here</Card.Title>
+        <Card.Title style={{ marginTop: '0px' }}>{club.clubName}</Card.Title>
+        <Card.Subtitle><span className="date">{club.contact}</span></Card.Subtitle>
       </Card.Header>
       <Card.Body>
         <Card.Text>
-          Club Description Here
-        </Card.Text>
-        <Card.Text>
-          Interests Here
-        </Card.Text>
-        <Card.Text>
-          Contacts Here
+          {club.description}
+          <br />
+          {club.interests.map((interest, index) => <Badge key={index} bg="info">{interest}</Badge>)}
         </Card.Text>
       </Card.Body>
     </Card>
@@ -45,41 +37,33 @@ const MakeCard = () => (
 );
 
 MakeCard.propTypes = {
-  profile: PropTypes.shape({
-    firstName: PropTypes.string,
-    lastName: PropTypes.string,
-    bio: PropTypes.string,
-    picture: PropTypes.string,
-    title: PropTypes.string,
+  club: PropTypes.shape({
+    description: PropTypes.string,
+    clubName: PropTypes.string,
+    contact: PropTypes.string,
     interests: PropTypes.arrayOf(PropTypes.string),
-    projects: PropTypes.arrayOf(PropTypes.string),
   }).isRequired,
 };
 
-/* Renders the Profile Collection as a set of Cards. */
-const ProfilesPage = () => {
-
+/* Renders the Project Collection as a set of Cards. */
+const ClubsPage = () => {
   const { ready } = useTracker(() => {
     // Ensure that minimongo is populated with all collections prior to running render().
-    const sub1 = Meteor.subscribe(Profiles.userPublicationName);
-    const sub2 = Meteor.subscribe(ProfilesInterests.userPublicationName);
-    const sub3 = Meteor.subscribe(ProfilesProjects.userPublicationName);
-    const sub4 = Meteor.subscribe(Projects.userPublicationName);
+    const sub1 = Meteor.subscribe(Clubs.userPublicationName);
+    const sub2 = Meteor.subscribe(ClubsInterests.userPublicationName);
     return {
-      ready: sub1.ready() && sub2.ready() && sub3.ready() && sub4.ready(),
+      ready: sub1.ready() && sub2.ready(),
     };
   }, []);
-  const emails = _.pluck(Profiles.collection.find().fetch(), 'email');
-  // There is a potential race condition. We might not be ready at this point.
-  // Need to ensure that getProfileData doesn't throw an error on line 18.
-  const profileData = emails.map(email => getProfileData(email));
+  const clubs = _.pluck(Clubs.collection.find().fetch(), 'clubName');
+  const clubData = clubs.map(club => getClubData(club));
   return ready ? (
-    <Container id={PageIDs.profilesPage} style={pageStyle}>
+    <Container id={PageIDs.clubsPage} style={pageStyle}>
       <Row xs={1} md={2} lg={4} className="g-2">
-        {profileData.map((profile, index) => <MakeCard key={index} profile={profile} />)}
+        {clubData.map((club, index) => <MakeCard key={index} club={club} />)}
       </Row>
     </Container>
   ) : <LoadingSpinner />;
 };
 
-export default ProfilesPage;
+export default ClubsPage;
