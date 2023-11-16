@@ -4,6 +4,7 @@ import { Meteor } from 'meteor/meteor';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import Footer from '../components/Footer';
 import Landing from '../pages/Landing';
+import UserLanding from '../pages/UserLanding';
 import NotFound from '../pages/NotFound';
 import SignUp from '../pages/SignUp';
 import SignOut from '../pages/SignOut';
@@ -29,7 +30,7 @@ const App = () => (
         <Route path="/signout" element={<SignOut />} />
         <Route path="/listing" element={<ClubsPage />} />
         <Route path="/projects" element={<Projects />} />
-        <Route path="/home" element={<ProtectedRoute><Home /></ProtectedRoute>} />
+        <Route path="/home" element={<ProtectedRoute><UserLanding /></ProtectedRoute>} />
         <Route path="/createclub" element={<ProtectedRoute><CreateClub /></ProtectedRoute>} />
         <Route path="/yourclubs" element={<ProtectedRoute><ProfilesPage /></ProtectedRoute>} />
         <Route path="/notauthorized" element={<NotAuthorized />} />
