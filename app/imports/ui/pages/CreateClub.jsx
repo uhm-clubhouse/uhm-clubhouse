@@ -70,25 +70,20 @@ const CreateClub = () => {
     <Container style={pageStyle}>
       <Row id={PageIDs.CreateClubPage} className="justify-content-center">
         <Col xs={10}>
-          <Col className="text-center"><h2>Add Project</h2></Col>
+          <Col className="text-center"><h2>Create Club</h2></Col>
           <AutoForm ref={ref => { fRef = ref; }} schema={bridge} onSubmit={data => submit(data, fRef)}>
             <Card>
               <Card.Body>
                 <Row>
-                  <Col xs={4}><TextField id={ComponentIDs.CreateClubFormName} name="name" showInlineError placeholder="Project name" /></Col>
-                  <Col xs={4}><TextField id={ComponentIDs.CreateClubFormPicture} name="picture" showInlineError placeholder="Project picture URL" /></Col>
-                  <Col xs={4}><TextField id={ComponentIDs.CreateClubFormHomePage} name="homepage" showInlineError placeholder="Homepage URL" /></Col>
+                  <Col xs={6}><TextField id={ComponentIDs.CreateClubFormName} label="Name of the club" name="name" showInlineError /></Col>
                 </Row>
-                <LongTextField id={ComponentIDs.CreateClubFormDescription} name="description" placeholder="Describe the project here" />
                 <Row>
                   <Col xs={6} id={ComponentIDs.CreateClubFormInterests}>
                     <SelectField name="interests" showInlineError placeholder="Interests" multiple checkboxes transform={transform} />
                   </Col>
-                  <Col xs={6} id={ComponentIDs.CreateClubFormParticipants}>
-                    <SelectField name="participants" showInlineError placeholder="Participants" multiple checkboxes transform={transform} />
-                  </Col>
+                  <LongTextField id={ComponentIDs.CreateClubFormDescription} name="description" />
                 </Row>
-                <SubmitField id={ComponentIDs.CreateClubFormSubmit} value="Submit" />
+                <SubmitField id={ComponentIDs.CreateClubFormSubmit} value="Create Club" />
                 <ErrorsField />
               </Card.Body>
             </Card>
