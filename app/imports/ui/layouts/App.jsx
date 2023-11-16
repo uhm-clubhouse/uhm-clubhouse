@@ -13,7 +13,7 @@ import SignIn from '../pages/SignIn';
 import NotAuthorized from '../pages/NotAuthorized';
 import Projects from '../pages/Projects';
 import Home from '../pages/Home';
-import Filter from '../pages/Filter';
+import ClubsPageSA from '../pages/SuperLanding';
 import CreateClub from '../pages/CreateClub';
 import ClubsPage from '../pages/ClubListing';
 import ProfilesPage from '../pages/YourClubs';
@@ -31,6 +31,7 @@ const App = () => (
         <Route path="/listing" element={<ClubsPage />} />
         <Route path="/projects" element={<Projects />} />
         <Route path="/home" element={<ProtectedRoute><UserLanding /></ProtectedRoute>} />
+        <Route path="/homeSA" element={<ProtectedRoute><ClubsPageSA /></ProtectedRoute>} />
         <Route path="/createclub" element={<ProtectedRoute><CreateClub /></ProtectedRoute>} />
         <Route path="/yourclubs" element={<ProtectedRoute><ProfilesPage /></ProtectedRoute>} />
         <Route path="/notauthorized" element={<NotAuthorized />} />
