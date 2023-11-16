@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Badge, Container, Card, Row, Col } from 'react-bootstrap';
+import { Badge, Container, Card, Row, Col, Nav, NavDropdown } from 'react-bootstrap';
 import { useTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { _ } from 'meteor/underscore';
@@ -59,7 +59,23 @@ const ClubsPage = () => {
   const clubData = clubs.map(club => getClubData(club));
   return ready ? (
     <Container id={PageIDs.clubsPage} style={pageStyle}>
-      <Row xs={1} md={2} lg={4} className="g-2">
+
+      <Nav className="justify-content-end">
+        <li className="px-2">
+          <NavDropdown title="Filter" id="filter">
+            <NavDropdown.Item href="#">Interest 1</NavDropdown.Item>
+            <NavDropdown.Item href="#">Interest 2</NavDropdown.Item>
+          </NavDropdown>
+        </li>
+        <li className="px-2">
+          <input type="text" placeholder="Search" />
+        </li>
+      </Nav>
+
+      <Row className="text-center">
+        <h3>Club Listing</h3>
+      </Row>
+      <Row xs={1} md={2} lg={4} className="g-2 justify-content-center">
         {clubData.map((club, index) => <MakeCard key={index} club={club} />)}
       </Row>
     </Container>
