@@ -2,6 +2,6 @@
 .idea
 .DS_Store
 node_modules
-
+settings.development.json
 app/.deploy/mup.js
 app/.deploy/settings.json
