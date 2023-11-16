@@ -13,13 +13,19 @@ import { ClubsInterests } from '../../api/clubs/ClubsInterests';
 /* eslint-disable no-console */
 
 /** Define a user in the Meteor accounts package. This enables login. Username is the email address. */
-function createUser(email, role) {
-  const userID = Accounts.createUser({ username: email, email, password: 'foo' });
+const createUser = (email, password, role) => {
+  console.log(`  Creating user ${email}.`);
+  const userID = Accounts.createUser({
+    username: email,
+    email: email,
+    password: password,
+  });
   if (role === 'admin') {
     Roles.createRole(role, { unlessExists: true });
     Roles.addUsersToRoles(userID, 'admin');
   }
-}
+};
+
 
 /** Define an interest. Has no effect if interest already exists. */
 function addInterest(interest) {
@@ -27,10 +33,10 @@ function addInterest(interest) {
 }
 
 /** Defines a new user and associated profile. Error if user already exists. */
-function addProfile({ firstName, lastName, bio, title, interests, projects, picture, email, role }) {
+function addProfile({ firstName, lastName, bio, title, interests, projects, picture, email, password, role }) {
   console.log(`Defining profile ${email}`);
   // Define the user in the Meteor accounts package.
-  createUser(email, role);
+  createUser(email, password, role);
   // Create the profile.
   Profiles.collection.insert({ firstName, lastName, bio, title, picture, email });
   // Add interests and projects.
@@ -67,6 +73,8 @@ if (Meteor.users.find().count() === 0) {
     Meteor.settings.defaultProjects.map(project => addProject(project));
     console.log('Creating the default clubs');
     Meteor.settings.defaultClubs.map(club => addClub(club));
+    console.log('Creating the default user(s)');
+    Meteor.settings.defaultAccounts.forEach(({ email, password, role }) => createUser(email, password, role));
   } else {
     console.log('Cannot initialize the database!  Please invoke meteor with a settings file.');
   }

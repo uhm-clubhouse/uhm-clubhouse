@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Meteor } from 'meteor/meteor';
+import { Roles } from 'meteor/alanning:roles';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import Footer from '../components/Footer';
 import Landing from '../pages/Landing';
@@ -13,10 +14,10 @@ import SignIn from '../pages/SignIn';
 import NotAuthorized from '../pages/NotAuthorized';
 import Projects from '../pages/Projects';
 import Home from '../pages/Home';
-import Filter from '../pages/Filter';
 import CreateClub from '../pages/CreateClub';
 import ClubsPage from '../pages/ClubListing';
 import ProfilesPage from '../pages/YourClubs';
+import LoadingSpinner from '../components/LoadingSpinner';
 
 /* Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 const App = () => (
@@ -31,8 +32,8 @@ const App = () => (
         <Route path="/listing" element={<ClubsPage />} />
         <Route path="/projects" element={<Projects />} />
         <Route path="/home" element={<ProtectedRoute><UserLanding /></ProtectedRoute>} />
-        <Route path="/createclub" element={<ProtectedRoute><CreateClub /></ProtectedRoute>} />
-        <Route path="/yourclubs" element={<ProtectedRoute><ProfilesPage /></ProtectedRoute>} />
+        <Route path="/yourclubs" element={<AdminProtectedRoute><ProfilesPage /></AdminProtectedRoute>} />
+        <Route path="/createclub" element={<AdminProtectedRoute><CreateClub /></AdminProtectedRoute>} />
         <Route path="/notauthorized" element={<NotAuthorized />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
@@ -51,12 +52,34 @@ const ProtectedRoute = ({ children }) => {
   return isLogged ? children : <Navigate to="/signin" />;
 };
 
+const AdminProtectedRoute = ({ ready, children }) => {
+  const isLogged = Meteor.userId() !== null;
+  if (!isLogged) {
+    return <Navigate to="/signin" />;
+  }
+  if (!ready) {
+    return <LoadingSpinner />;
+  }
+  const isAdmin = Roles.userIsInRole(Meteor.userId(), 'admin');
+  return (isLogged && isAdmin) ? children : <Navigate to="/notauthorized" />;
+};
+
 // Require a component and location to be passed to each ProtectedRoute.
 ProtectedRoute.propTypes = {
   children: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
 };
 
 ProtectedRoute.defaultProps = {
+  children: <Home />,
+};
+
+AdminProtectedRoute.propTypes = {
+  ready: PropTypes.bool,
+  children: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
+};
+
+AdminProtectedRoute.defaultProps = {
+  ready: false,
   children: <Home />,
 };
 
