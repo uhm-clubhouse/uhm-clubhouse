@@ -61,7 +61,7 @@ const Landing = () => (
             <Image src="/images/create-club.png" width={480} />
           </Col>
           <Col xs={6}>
-            <Image src="/images/following-club.png" width={480} />
+            <Image src="/images/your-club.png" width={480} />
           </Col>
         </Row>
       </Container>
