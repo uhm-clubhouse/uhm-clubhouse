@@ -79,9 +79,9 @@ const CreateClub = () => {
                 </Row>
                 <Row>
                   <Col xs={6} id={ComponentIDs.CreateClubFormInterests}>
-                    <SelectField name="interests" showInlineError placeholder="Interests" multiple checkboxes transform={transform} />
+                    <SelectField label="Related interests: (Select that apply)" name="interests" showInlineError placeholder="Interests" multiple checkboxes transform={transform} />
                   </Col>
-                  <LongTextField id={ComponentIDs.CreateClubFormDescription} name="description" />
+                  <LongTextField id={ComponentIDs.CreateClubFormDescription} label="Description" name="description" />
                 </Row>
                 <SubmitField id={ComponentIDs.CreateClubFormSubmit} value="Create Club" />
                 <ErrorsField />
