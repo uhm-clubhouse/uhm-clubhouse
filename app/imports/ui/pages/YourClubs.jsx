@@ -1,9 +1,10 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Container, Card, Row, Col, Badge } from 'react-bootstrap';
+import { Container, Card, Row, Col, Badge, Nav } from 'react-bootstrap';
 import { useTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { _ } from 'meteor/underscore';
+import { NavLink } from 'react-router-dom';
 import LoadingSpinner from '../components/LoadingSpinner';
 import { pageStyle } from './pageStyles';
 import { PageIDs } from '../utilities/ids';
@@ -30,8 +31,14 @@ const MakeCard = ({ club }) => (
           {club.description}
           <br />
           {club.interests.map((interest, index) => <Badge key={index} bg="info">{interest}</Badge>)}
+          <br />
         </Card.Text>
       </Card.Body>
+      <Row>
+        <Col>
+          <Nav.Link as={NavLink} to="/editclub" key="clubs" id="editClubs">Edit</Nav.Link>
+        </Col>
+      </Row>
     </Card>
   </Col>
 );
@@ -59,7 +66,7 @@ const YourClubs = () => {
   const clubData = clubs.map(club => getClubData(club));
   return ready ? (
     <Container id={PageIDs.clubsPage} style={pageStyle}>
-      <Row xs={1} md={2} lg={4} className="g-2">
+      <Row xs={1} md={2} lg={4} className="g-2 justify-content-center">
         {clubData.map((club, index) => <MakeCard key={index} club={club} />)}
       </Row>
     </Container>
