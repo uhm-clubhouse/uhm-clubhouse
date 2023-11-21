@@ -32,8 +32,8 @@ const App = () => (
         <Route path="/listing" element={<ClubsPage />} />
         <Route path="/projects" element={<Projects />} />
         <Route path="/home" element={<ProtectedRoute><UserLanding /></ProtectedRoute>} />
-        <Route path="/yourclubs" element={<AdminProtectedRoute><ProfilesPage /></AdminProtectedRoute>} />
-        <Route path="/createclub" element={<AdminProtectedRoute><CreateClub /></AdminProtectedRoute>} />
+        <Route path="/yourclubs" element={<ProtectedRoute><ProfilesPage /></ProtectedRoute>} />
+        <Route path="/createclub" element={<ProtectedRoute><CreateClub /></ProtectedRoute>} />
         <Route path="/notauthorized" element={<NotAuthorized />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
