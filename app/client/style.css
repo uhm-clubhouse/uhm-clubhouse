@@ -20,7 +20,16 @@ body {
 .bg-light span, .bg-light a {
   color:  #100f0f;
 }
-
+nav::after {
+  border-bottom: 8px solid green;
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  width: 100%;
+  bottom: 0;
+  margin: 0 auto;
+}
 
 /* When logged in we highlight the selected route. */
 .bg-dark a.nav-link.active {
@@ -29,7 +38,7 @@ body {
 
 /* Override the color on the dropdown when logged in. */
 .bg-dark a.dropdown-item {
-  color: #e3f7c0;
+  color: black;
 }
 
 /* Landing page color blocking */
