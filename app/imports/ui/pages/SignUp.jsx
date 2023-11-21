@@ -47,8 +47,6 @@ const SignUp = () => {
           <AutoForm schema={bridge} onSubmit={data => submit(data)}>
             <Card>
               <Card.Body>
-                <TextField id={ComponentIDs.signUpFirstName} label="First Name" name="email" placeholder="First Name" />
-                <TextField id={ComponentIDs.signUpLastName} label="Last Name" name="email" placeholder="Last Name" />
                 <TextField id={ComponentIDs.signUpFormEmail} name="email" placeholder="E-mail address" />
                 <TextField id={ComponentIDs.signUpFormPassword} name="password" placeholder="Password" type="password" />
                 <ErrorsField />
