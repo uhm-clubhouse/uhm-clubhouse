@@ -46,11 +46,13 @@ const SignIn = () => {
       <Row className="justify-content-center">
         <Col xs={9}>
           <Col className="text-center">
-            <h2>Login to your account</h2>
+            <h2>Register</h2>
           </Col>
           <AutoForm schema={bridge} onSubmit={data => submit(data)}>
             <Card>
               <Card.Body>
+                <TextField id={ComponentIDs.signUpFirstName} label="First Name" name="email" placeholder="First Name" />
+                <TextField id={ComponentIDs.signUpLastName} label="Last Name" name="email" placeholder="Last Name" />
                 <TextField id={ComponentIDs.signInFormEmail} name="email" placeholder="E-mail address" />
                 <TextField id={ComponentIDs.signInFormPassword} name="password" placeholder="Password" type="password" />
                 <ErrorsField />
