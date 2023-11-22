@@ -3,6 +3,40 @@
     "appId": "3Dht4kpDjRCBtkwei",
     "appSecret": "2c1104f7-8852-4a3b-8911-e5e3aab61758"
   },
+  "defaultAccounts": [
+    { "email": "admin@foo.com", "password": "changeme", "role": "admin" },
+    { "email": "john@foo.com", "password": "changeme" },
+    { "email": "sadmin@foo.com", "password": "changeme", "role": "spec"}
+  ],
+  "defaultClubs" : [
+    {
+      "clubName": "Association for Computing Machinery at the University of Hawaii at Manoa (ACM)",
+      "contact": "acm@gmail.com",
+      "description": "ACM is a global scientific and educational organization dedicated to advancing the art, science, engineering, and application of computing, serving both professional and public interests by fostering the open exchange of information and by promoting the highest professional and ethical standards. The main goals of the organization is to promote professional and technical development, facilitate networking, and enrich the lives of the organization members.",
+      "interests": [
+        "Software Engineering",
+        "Computer Science",
+        "Art"
+      ]
+    },
+    {
+      "clubName": "Grey Hats",
+      "contact": "greyhats@gmail.com",
+      "description": "Provide education on cybersecurity topics, facilitate mentorship from relevant professionals and create an environment where interested individuals can learn cybersecurity fundamentals.",
+      "interests": [
+        "Cybersecurity",
+        "Computer Science"
+      ]
+    },
+    {
+      "clubName": "Ballroom Dance Club @UH",
+      "contact": "uhballroom@gmail.com",
+      "description": "Promote social and competitive ballroom dance within the UH community.",
+      "interests": [
+        "Dance"
+      ]
+    }
+  ],
   "defaultProfiles": [
     {
       "firstName": "Philip",

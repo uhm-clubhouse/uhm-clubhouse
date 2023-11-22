@@ -66,6 +66,18 @@ const AdminProtectedRoute = ({ ready, children }) => {
   return (isLogged && isAdmin) ? children : <Navigate to="/notauthorized" />;
 };
 
+const SadminProtectedRoute = ({ ready, children }) => {
+  const isLogged = Meteor.userId() !== null;
+  if (!isLogged) {
+    return <Navigate to="/signin" />;
+  }
+  if (!ready) {
+    return <LoadingSpinner />;
+  }
+  const isSadmin = Roles.userIsInRole(Meteor.userId(), 'spec');
+  return (isLogged && isSadmin) ? children : <Navigate to="/notauthorized" />;
+};
+
 // Require a component and location to be passed to each ProtectedRoute.
 ProtectedRoute.propTypes = {
   children: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
@@ -85,4 +97,13 @@ AdminProtectedRoute.defaultProps = {
   children: <Home />,
 };
 
+SadminProtectedRoute.propTypes = {
+  ready: PropTypes.bool,
+  children: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
+};
+
+SadminProtectedRoute.defaultProps = {
+  ready: false,
+  children: <Home />,
+};
 export default App;
