@@ -33,7 +33,7 @@ const CreateClub = () => {
       if (error) {
         swal('Error', error.message, 'error');
       } else {
-        swal('Success', 'Project added successfully', 'success').then(() => formRef.reset());
+        swal('Success', 'Club created successfully', 'success').then(() => formRef.reset());
       }
     });
   };
