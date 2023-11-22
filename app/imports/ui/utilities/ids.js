@@ -8,6 +8,11 @@ export const ComponentIDs = {
   addProjectFormParticipants: 'addProjectFormParticipants',
   addProjectFormSubmit: 'addProjectFormSubmit',
   basicNavbarNav: 'basicNavbarNav',
+  createClubFormName: 'createClubFormName',
+  createClubFormContact: 'createClubFormContact',
+  createClubFormInterests: 'createClubFormInterests',
+  createClubFormDescription: 'createClubFormDescription',
+  createClubFormSubmit: 'createClubFormSubmit',
   currentUserDropdown: 'currentUserDropdown',
   currentUserDropdownSignOut: 'currentUserDropdownSignOut',
   filterFormInterests: 'filterFormInterests',
@@ -34,6 +39,7 @@ export const ComponentIDs = {
 
 export const PageIDs = {
   addProjectPage: 'addProjectPage',
+  createClubPage: 'createClubPage',
   filterPage: 'filterPage',
   homePage: 'homePage',
   interestsPage: 'interestsPage',
