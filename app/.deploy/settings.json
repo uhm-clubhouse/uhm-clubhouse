@@ -6,7 +6,7 @@
   "defaultAccounts": [
     { "email": "admin@foo.com", "password": "changeme", "role": "admin" },
     { "email": "john@foo.com", "password": "changeme" },
-    { "email": "sadmin@foo.com", "password": "changeme", "role": "spec"}
+    { "email": "sadmin@foo.com", "password": "changeme", "role": "manage-users"}
   ],
   "defaultClubs" : [
     {

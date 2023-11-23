@@ -19,6 +19,7 @@ import ClubsPage from '../pages/ClubListing';
 import LoadingSpinner from '../components/LoadingSpinner';
 import YourClubs from '../pages/YourClubs';
 import EditClub from '../pages/EditClub';
+import Setadmin from '../pages/Setadmin';
 
 /* Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 const App = () => (
@@ -35,6 +36,7 @@ const App = () => (
         <Route path="/home" element={<ProtectedRoute><UserLanding /></ProtectedRoute>} />
         <Route path="/yourclubs" element={<ProtectedRoute><YourClubs /></ProtectedRoute>} />
         <Route path="/createclub" element={<ProtectedRoute><CreateClub /></ProtectedRoute>} />
+        <Route path="/setadmin" element={<ProtectedRoute><Setadmin /></ProtectedRoute>} />
         <Route path="/editclub" element={<ProtectedRoute><EditClub /></ProtectedRoute>} />
         <Route path="/notauthorized" element={<NotAuthorized />} />
         <Route path="*" element={<NotFound />} />
@@ -66,18 +68,6 @@ const AdminProtectedRoute = ({ ready, children }) => {
   return (isLogged && isAdmin) ? children : <Navigate to="/notauthorized" />;
 };
 
-const SadminProtectedRoute = ({ ready, children }) => {
-  const isLogged = Meteor.userId() !== null;
-  if (!isLogged) {
-    return <Navigate to="/signin" />;
-  }
-  if (!ready) {
-    return <LoadingSpinner />;
-  }
-  const isSadmin = Roles.userIsInRole(Meteor.userId(), 'spec');
-  return (isLogged && isSadmin) ? children : <Navigate to="/notauthorized" />;
-};
-
 // Require a component and location to be passed to each ProtectedRoute.
 ProtectedRoute.propTypes = {
   children: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
@@ -97,13 +87,4 @@ AdminProtectedRoute.defaultProps = {
   children: <Home />,
 };
 
-SadminProtectedRoute.propTypes = {
-  ready: PropTypes.bool,
-  children: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
-};
-
-SadminProtectedRoute.defaultProps = {
-  ready: false,
-  children: <Home />,
-};
 export default App;

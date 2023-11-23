@@ -3,11 +3,10 @@
     "appId": "y64c7GaciXQwgMrPK",
     "appSecret": "c596c9a6-8b5b-4735-a39b-bcb9cc7f9e9c"
   },
-
   "defaultAccounts": [
     { "email": "admin@foo.com", "password": "changeme", "role": "admin" },
     { "email": "john@foo.com", "password": "changeme" },
-    { "email": "sadmin@foo.com", "password": "changeme", "role": "spec"}
+    { "email": "sadmin@foo.com", "password": "changeme", "role": "manage-users"}
   ],
 
   "defaultClubs" : [

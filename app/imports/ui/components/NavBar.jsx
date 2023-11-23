@@ -33,9 +33,10 @@ const NavBar = () => {
               [<Nav.Link as={NavLink} id={ComponentIDs.addProjectMenuItem} to="/yourclubs" key="clubs">Your Clubs</Nav.Link>,
                 <Nav.Link as={NavLink} id={ComponentIDs.filterMenuItem} to="/createclub" key="create">Create Club</Nav.Link>]
             ) : ''}
-            {Roles.userIsInRole(Meteor.userId(), 'spec') ? (
+            {Roles.userIsInRole(Meteor.userId(), 'manage-users') ? (
               [<Nav.Link as={NavLink} id={ComponentIDs.addProjectMenuItem} to="/yourclubs" key="clubs">Your Clubs</Nav.Link>,
-                <Nav.Link as={NavLink} id={ComponentIDs.filterMenuItem} to="/createclub" key="create">Create Club</Nav.Link>]
+                <Nav.Link as={NavLink} id={ComponentIDs.filterMenuItem} to="/createclub" key="create">Create Club</Nav.Link>,
+                <Nav.Link as={NavLink} id={ComponentIDs.filterMenuItem} to="/setadmin" key="set">Set Admin</Nav.Link>]
             ) : ''}
           </Nav>
           <Nav className="justify-content-end">

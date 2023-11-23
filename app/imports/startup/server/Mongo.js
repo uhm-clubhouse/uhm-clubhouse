@@ -24,9 +24,11 @@ const createUser = (email, password, role) => {
     Roles.createRole(role, { unlessExists: true });
     Roles.addUsersToRoles(userID, 'admin');
   }
-  Roles.createRole('spec');
+  if (role === 'manage-users') {
+    Roles.createRole(role, { unlessExists: true });
+    Roles.addUsersToRoles(userID, 'manage-users');
+  }
 };
-
 
 /** Define an interest. Has no effect if interest already exists. */
 function addInterest(interest) {
