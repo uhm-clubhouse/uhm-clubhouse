@@ -59,7 +59,7 @@ const CreateClub = () => {
   return ready ? (
     <Container style={pageStyle}>
       <Row id={PageIDs.createClubPage} className="justify-content-center">
-        <Col xs={10}>
+        <Col xs={6}>
           <Col className="text-center"><h2>Create Club</h2></Col>
           <AutoForm ref={ref => { fRef = ref; }} schema={bridge} onSubmit={data => submit(data, fRef)}>
             <Card>
