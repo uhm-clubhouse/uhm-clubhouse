@@ -46,7 +46,7 @@ const Setadmin = () => {
 
     return {
       ready: sub1.ready(),
-      interests: Profiles.collection.find().fetch(),
+      profile: Profiles.collection.find().fetch(),
     };
   }, []);
 
