@@ -5,7 +5,7 @@ import { Col, Container } from 'react-bootstrap';
 const Footer = () => (
   <footer className="footer mt-auto py-3 bg-dark">
     <Container>
-      <Col className="text-center" style={{ color: 'white' }}>
+      <Col className="text-center" style={{ color: 'black' }}>
         UHM Clubhouse
         {' '}
         <br />
@@ -14,7 +14,7 @@ const Footer = () => (
         Honolulu, HI 96822
         {' '}
         <br />
-        <a style={{ color: 'white' }} href="https://uhm-clubhouse.github.io/">https://uhm-clubhouse.github.io/</a>
+        <a style={{ color: 'blue' }} href="https://uhm-clubhouse.github.io/">https://uhm-clubhouse.github.io/</a>
       </Col>
     </Container>
   </footer>
