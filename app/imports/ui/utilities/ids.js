@@ -14,6 +14,7 @@ export const ComponentIDs = {
   createClubFormInterests: 'createClubFormInterests',
   createClubFormDescription: 'createClubFormDescription',
   createClubFormSubmit: 'createClubFormSubmit',
+  createClubMenuItem: 'createClubMenuItem',
   currentUserDropdown: 'currentUserDropdown',
   currentUserDropdownSignOut: 'currentUserDropdownSignOut',
   filterFormInterests: 'filterFormInterests',
@@ -30,6 +31,9 @@ export const ComponentIDs = {
   loginDropdownSignUp: 'loginDropdownSignUp',
   profilesMenuItem: 'profilesMenuItem',
   projectsMenuItem: 'projectsMenuItem',
+  setAdminMenuItem: 'setAdminMenuItem',
+  setAdminEmail: 'setAdminEmail',
+  setAdminFormSubmit: 'setAdminFormSubmit',
   signInFormEmail: 'signInFormEmail',
   signInFormPassword: 'signInFormPassword',
   signInFormSubmit: 'signInFormSubmit',
@@ -41,6 +45,7 @@ export const ComponentIDs = {
   editClubFormInterests: 'editClubFormInterests',
   editClubFormDescription: 'editClubFormDescription',
   editClubFormSubmit: 'editClubFormSubmit',
+  yourClubsMenuItem: 'yourClubsMenuItem',
 };
 
 export const PageIDs = {
@@ -59,5 +64,6 @@ export const PageIDs = {
   signUpPage: 'signUpPage',
   clubsPage: 'clubsPage',
   editClubPage: 'editClubPage',
-
+  yourClubsPage: 'yourClubsPage',
+  setAdminPage: 'setAdminPage',
 };

@@ -29,13 +29,13 @@ const NavBar = () => {
             ) : ''}
             <Nav.Link as={NavLink} id={ComponentIDs.clubsMenuItem} to="/listing" key="list">Club Listing</Nav.Link>
             {Roles.userIsInRole(Meteor.userId(), 'admin') ? (
-              [<Nav.Link as={NavLink} id={ComponentIDs.addProjectMenuItem} to="/yourclubs" key="clubs">Your Clubs</Nav.Link>,
-                <Nav.Link as={NavLink} id={ComponentIDs.filterMenuItem} to="/createclub" key="create">Create Club</Nav.Link>]
+              [<Nav.Link as={NavLink} id={ComponentIDs.yourClubsMenuItem} to="/yourclubs" key="clubs">Your Clubs</Nav.Link>,
+                <Nav.Link as={NavLink} id={ComponentIDs.createClubMenuItem} to="/createclub" key="create">Create Club</Nav.Link>]
             ) : ''}
             {Roles.userIsInRole(Meteor.userId(), 'manage-users') ? (
-              [<Nav.Link as={NavLink} id={ComponentIDs.addProjectMenuItem} to="/yourclubs" key="clubs">Your Clubs</Nav.Link>,
-                <Nav.Link as={NavLink} id={ComponentIDs.filterMenuItem} to="/createclub" key="create">Create Club</Nav.Link>,
-                <Nav.Link as={NavLink} id={ComponentIDs.filterMenuItem} to="/setadmin" key="set">Set Admin</Nav.Link>]
+              [<Nav.Link as={NavLink} id={ComponentIDs.yourClubsMenuItem} to="/yourclubs" key="clubs">Your Clubs</Nav.Link>,
+                <Nav.Link as={NavLink} id={ComponentIDs.createClubMenuItem} to="/createclub" key="create">Create Club</Nav.Link>,
+                <Nav.Link as={NavLink} id={ComponentIDs.setAdminMenuItem} to="/setadmin" key="set">Set Admin</Nav.Link>]
             ) : ''}
           </Nav>
           <Nav className="justify-content-end">

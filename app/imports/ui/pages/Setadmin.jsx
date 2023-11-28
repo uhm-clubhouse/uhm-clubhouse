@@ -62,18 +62,18 @@ const Setadmin = () => {
   const transform = (label) => ` ${label}`;
   /* Render the form. Use Uniforms: https://github.com/vazco/uniforms */
   return ready ? (
-    <Container style={pageStyle}>
-      <Row id={PageIDs.createClubPage} className="justify-content-center">
+    <Container style={pageStyle} id={PageIDs.setAdminPage}>
+      <Row className="justify-content-center">
         <Col xs={10}>
           <Col className="text-center"><h2>Set Admin</h2></Col>
           <AutoForm ref={ref => { fRef = ref; }} schema={bridge} onSubmit={data => submit(data, fRef)}>
             <Card>
               <Card.Body>
                 <Row>
-                  <Col xs={6}><TextField id={ComponentIDs.createClubFormName} label="Add Admin" name="email" showInlineError />
+                  <Col xs={6}><TextField id={ComponentIDs.setAdminEmail} label="Add Admin" name="email" showInlineError />
                   </Col>
                 </Row>
-                <SubmitField id={ComponentIDs.createClubFormSubmit} value="Submit" />
+                <SubmitField id={ComponentIDs.setAdminFormSubmit} value="Submit" />
                 <ErrorsField />
               </Card.Body>
             </Card>

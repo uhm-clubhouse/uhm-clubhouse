@@ -66,6 +66,30 @@ class NavBar {
     await testController.click(`#${ComponentIDs.addProjectMenuItem}`);
   }
 
+  async gotoYourClubsPage(testController) {
+    const visible = await Selector(`#${ComponentIDs.basicNavbarNav}`).visible;
+    if (!visible) {
+      await testController.click('button.navbar-toggler');
+    }
+    await testController.click(`#${ComponentIDs.yourClubsMenuItem}`);
+  }
+
+  async gotoCreateClubPage(testController) {
+    const visible = await Selector(`#${ComponentIDs.basicNavbarNav}`).visible;
+    if (!visible) {
+      await testController.click('button.navbar-toggler');
+    }
+    await testController.click(`#${ComponentIDs.createClubMenuItem}`);
+  }
+
+  async gotoSetAdminPage(testController) {
+    const visible = await Selector(`#${ComponentIDs.basicNavbarNav}`).visible;
+    if (!visible) {
+      await testController.click('button.navbar-toggler');
+    }
+    await testController.click(`#${ComponentIDs.setAdminMenuItem}`);
+  }
+
   async gotoFilterPage(testController) {
     const visible = await Selector(`#${ComponentIDs.basicNavbarNav}`).visible;
     if (!visible) {
