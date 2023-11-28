@@ -3,6 +3,7 @@ import { signInPage } from './signin.page';
 import { signOutPage } from './signout.page';
 import { signupPage } from './signup.page';
 import { navBar } from './navbar.component';
+import { clubsPage } from './clubListing.page';
 
 /* global fixture:false, test:false */
 
@@ -34,11 +35,11 @@ test('Test that signup page, then logout works', async (testController) => {
   await signOutPage.isDisplayed(testController);
 });
 
-// test('Test that profiles page displays', async (testController) => {
-//   await navBar.gotoProfilesPage(testController);
-//   await profilesPage.isDisplayed(testController);
-//   await profilesPage.hasDefaultProfiles(testController);
-// });
+test('Test that club listing page displays', async (testController) => {
+  await navBar.gotoClubListingPage(testController);
+  await clubsPage.isDisplayed(testController);
+  await clubsPage.hasDefaultClubs(testController);
+});
 
 // test('Test that interests page displays', async (testController) => {
 //   await navBar.gotoInterestsPage(testController);
