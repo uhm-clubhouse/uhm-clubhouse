@@ -9,10 +9,11 @@ import { pageStyle } from './pageStyles';
 import { PageIDs } from '../utilities/ids';
 import { Clubs } from '../../api/clubs/Clubs';
 import { ClubsInterests } from '../../api/clubs/ClubsInterests';
+import { ProfilesClubs } from '../../api/profiles/ProfilesClubs';
 
 /* Gets the Clubs data as well as the Interests associated with the passed Clubs name. */
 function getClubData(clubName) {
-  const data = Clubs.collection.findOne({ clubName });
+  const data = ProfilesClubs.collection.findOne({ clubName });
   const interests = _.pluck(ClubsInterests.collection.find({ club: clubName }).fetch(), 'interest');
   return _.extend({}, data, { interests });
 }
@@ -51,11 +52,12 @@ const UserLanding = () => {
     // Ensure that minimongo is populated with all collections prior to running render().
     const sub1 = Meteor.subscribe(Clubs.userPublicationName);
     const sub2 = Meteor.subscribe(ClubsInterests.userPublicationName);
+    const sub3 = Meteor.subscribe(ProfilesClubs.userPublicationName);
     return {
-      ready: sub1.ready() && sub2.ready(),
+      ready: sub1.ready() && sub2.ready() && sub3.ready(),
     };
   }, []);
-  const clubs = _.pluck(Clubs.collection.find().fetch(), 'clubName');
+  const clubs = _.pluck(ProfilesClubs.collection.find().fetch(), 'clubName');
   const clubData = clubs.map(club => getClubData(club));
 
   // State to manage selected club in the sidebar
