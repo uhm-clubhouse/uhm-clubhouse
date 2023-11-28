@@ -14,7 +14,7 @@ class CreateClubPage {
 
   /** Checks this page is displayed, then adds a new club */
   async createClub(testController) {
-    const name = `radgrad-${new Date().getTime()}`;
+    const name = `uhm-clubhouse-${new Date().getTime()}`;
     const contact = 'testing@testing.com';
     const description = 'Testing this page';
     await this.isDisplayed(testController);
