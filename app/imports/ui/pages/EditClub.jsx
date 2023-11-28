@@ -64,7 +64,7 @@ const EditClub = () => {
   return ready ? (
     <Container style={pageStyle}>
       <Row id={PageIDs.editClubPage} className="justify-content-center">
-        <Col xs={10}>
+        <Col xs={6}>
           <Col className="text-center"><h2>Edit Club</h2></Col>
           <AutoForm ref={ref => { fRef = ref; }} schema={bridge} onSubmit={data => submit(data, fRef)} model={clubData}>
             <Card>
@@ -80,7 +80,7 @@ const EditClub = () => {
                   </Col>
                   <LongTextField id={ComponentIDs.editClubFormDescription} label="Description" name="description" />
                 </Row>
-                <SubmitField id={ComponentIDs.editClubFormSubmit} value="Update Club" />
+                <SubmitField position="end" id={ComponentIDs.editClubFormSubmit} value="Update Club" />
                 <ErrorsField />
               </Card.Body>
             </Card>
