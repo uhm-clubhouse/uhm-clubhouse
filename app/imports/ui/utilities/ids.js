@@ -35,6 +35,11 @@ export const ComponentIDs = {
   signUpFormEmail: 'signUpFormEmail',
   signUpFormPassword: 'signUpFormPassword',
   signUpFormSubmit: 'signUpFormSubmit',
+  editClubFormName: 'editClubFormName',
+  editClubFormContact: 'editClubFormContact',
+  editClubFormInterests: 'editClubFormInterests',
+  editClubFormDescription: 'editClubFormDescription',
+  editClubFormSubmit: 'editClubFormSubmit',
 };
 
 export const PageIDs = {
@@ -52,4 +57,6 @@ export const PageIDs = {
   signOutPage: 'signOutPage',
   signUpPage: 'signUpPage',
   clubsPage: 'clubsPage',
+  editClubPage: 'editClubPage',
+
 };
