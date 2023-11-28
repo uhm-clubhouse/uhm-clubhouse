@@ -85,4 +85,19 @@ Meteor.methods({
   },
 });
 
-export { updateProfileMethod, addProjectMethod, createClubMethod };
+const updateClubMethod = 'Clubs.update';
+
+/**
+ * The server-side Profiles.update Meteor Method is called by the client-side Home page after pushing the update button.
+ * Its purpose is to update the Profiles, ProfilesInterests, and ProfilesProjects collections to reflect the
+ * updated situation specified by the user.
+ */
+Meteor.methods({
+  'Clubs.update'({ clubName, contact, interests, description }) {
+    Clubs.collection.update({ clubName }, { $set: { clubName, contact, description } });
+    ClubsInterests.collection.remove({ club: clubName });
+    interests.map((interest) => ClubsInterests.collection.insert({ club: clubName, interest }));
+  },
+});
+
+export { updateProfileMethod, addProjectMethod, createClubMethod, updateClubMethod };

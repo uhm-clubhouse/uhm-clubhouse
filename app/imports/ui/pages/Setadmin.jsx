@@ -7,6 +7,7 @@ import SimpleSchema from 'simpl-schema';
 import { Meteor } from 'meteor/meteor';
 import { Roles } from 'meteor/alanning:roles';
 import { useTracker } from 'meteor/react-meteor-data';
+// eslint-disable-next-line no-unused-vars
 import { _ } from 'meteor/underscore';
 import LoadingSpinner from '../components/LoadingSpinner';
 import { pageStyle } from './pageStyles';
@@ -14,7 +15,7 @@ import { ComponentIDs, PageIDs } from '../utilities/ids';
 import { Profiles } from '../../api/profiles/Profiles';
 
 /* Create a schema to specify the structure of the data to appear in the form. */
-const makeSchema = (seta) => new SimpleSchema({
+const makeSchema = () => new SimpleSchema({
   email: String,
 });
 
@@ -24,6 +25,7 @@ const Setadmin = () => {
   /* On submit, insert the data. */
   const submit = (data, formRef) => {
     Profiles.collection.insert(
+      // eslint-disable-next-line no-undef
       { role },
       (error) => {
         if (error) {
@@ -32,8 +34,11 @@ const Setadmin = () => {
           swal('Success', 'Item added successfully', 'success');
           formRef.reset();
         }
+        // eslint-disable-next-line no-undef
         if (role === null) {
+          // eslint-disable-next-line no-undef
           Roles.createRole(role, { unlessExists: true });
+          // eslint-disable-next-line no-undef
           Roles.addUsersToRoles(userID, 'admin');
         }
       },
@@ -51,24 +56,24 @@ const Setadmin = () => {
   }, []);
 
   let fRef = null;
-  const seta = _.pluck(profile, 'name');
   const formSchema = makeSchema(profile);
   const bridge = new SimpleSchema2Bridge(formSchema);
+  // eslint-disable-next-line no-unused-vars
   const transform = (label) => ` ${label}`;
   /* Render the form. Use Uniforms: https://github.com/vazco/uniforms */
   return ready ? (
-    <Container style={pageStyle}>
-      <Row id={PageIDs.createClubPage} className="justify-content-center">
+    <Container style={pageStyle} id={PageIDs.setAdminPage}>
+      <Row className="justify-content-center">
         <Col xs={10}>
           <Col className="text-center"><h2>Set Admin</h2></Col>
           <AutoForm ref={ref => { fRef = ref; }} schema={bridge} onSubmit={data => submit(data, fRef)}>
             <Card>
               <Card.Body>
                 <Row>
-                  <Col xs={6}><TextField id={ComponentIDs.createClubFormName} label="Add Admin" name="email" showInlineError />
+                  <Col xs={6}><TextField id={ComponentIDs.setAdminEmail} label="Add Admin" name="email" showInlineError />
                   </Col>
                 </Row>
-                <SubmitField id={ComponentIDs.createClubFormSubmit} value="Submit" />
+                <SubmitField id={ComponentIDs.setAdminFormSubmit} value="Submit" />
                 <ErrorsField />
               </Card.Body>
             </Card>

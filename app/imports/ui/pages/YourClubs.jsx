@@ -65,7 +65,7 @@ const YourClubs = () => {
   const clubs = _.pluck(Clubs.collection.find().fetch(), 'clubName');
   const clubData = clubs.map(club => getClubData(club));
   return ready ? (
-    <Container id={PageIDs.clubsPage} style={pageStyle}>
+    <Container id={PageIDs.yourClubsPage} style={pageStyle}>
       <Row xs={1} md={2} lg={4} className="g-2 justify-content-center">
         {clubData.map((club, index) => <MakeCard key={index} club={club} />)}
       </Row>

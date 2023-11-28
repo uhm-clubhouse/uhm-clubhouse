@@ -16,6 +16,7 @@ body {
   --bs-dark-rgb: #100f0f;
 }
 
+
 /* Color the light Brand and links with dark color */
 .bg-light span, .bg-light a {
   color:  #100f0f;
@@ -30,6 +31,9 @@ nav::after {
   bottom: 0;
   margin: 0 auto;
 }
+
+
+
 
 /* When logged in we highlight the selected route. */
 .bg-dark a.nav-link.active {
