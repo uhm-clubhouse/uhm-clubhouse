@@ -32,7 +32,10 @@ nav::after {
   margin: 0 auto;
 }
 
-
+footer {
+  border-top: 8px solid green;
+  
+}
 
 
 /* When logged in we highlight the selected route. */
