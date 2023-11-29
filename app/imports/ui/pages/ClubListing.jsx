@@ -79,7 +79,7 @@ const ClubListing = () => {
         <li className="px-2">
           <NavDropdown title={selectedInterest ? `Filter by ${selectedInterest}` : 'Filter by Interest'} id="filter">
             <NavDropdown.Item onClick={() => handleInterestSelect(null)}>Show All</NavDropdown.Item>
-            {clubData.map(club => (club.interests.map(interest => (<NavDropdown.Item key={interest} onClick={() => handleInterestSelect(interest)}>{interest}</NavDropdown.Item>))))}
+            {allInterests.map(interest => (<NavDropdown.Item key={interest} onClick={() => handleInterestSelect(interest)}>{interest}</NavDropdown.Item>))}
           </NavDropdown>
         </li>
         <li className="px-2">
