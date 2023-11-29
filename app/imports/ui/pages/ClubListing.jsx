@@ -65,6 +65,7 @@ const ClubListing = () => {
   const clubData = clubs.map(club => getClubData(club));
   const allInterests = _.pluck(interests, 'name');
   // console.log(allInterests);
+
   return ready ? (
     <Container id={PageIDs.clubsPage} style={pageStyle}>
 
