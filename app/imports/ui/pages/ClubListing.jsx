@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Meteor } from 'meteor/meteor';
 import { Badge, Container, Card, Row, Col, Nav, NavDropdown } from 'react-bootstrap';
 import { useTracker } from 'meteor/react-meteor-data';
@@ -64,17 +64,22 @@ const ClubListing = () => {
   const clubs = _.pluck(Clubs.collection.find().fetch(), 'clubName');
   const clubData = clubs.map(club => getClubData(club));
   const allInterests = _.pluck(interests, 'name');
-  // console.log(allInterests);
-
+  console.log(allInterests);
+  console.log(clubData);
+  //
+  const [selectedInterest, setSelectedInterest] = useState(null);
+  const handleInterestSelect = (interest) => {
+    setSelectedInterest(interest);
+  };
+  const filteredInterest = selectedInterest ? clubData.filter(club => club.interests.includes(selectedInterest)) : clubData;
+  //
   return ready ? (
     <Container id={PageIDs.clubsPage} style={pageStyle}>
-
       <Nav className="justify-content-end">
         <li className="px-2">
-          <NavDropdown title="Filter" id="filter">
-            {allInterests.map((interest, index) => (
-              <NavDropdown.Item key={index}>{interest}</NavDropdown.Item>
-            ))}
+          <NavDropdown title={selectedInterest ? `Filter by ${selectedInterest}` : 'Filter by Interest'} id="filter">
+            <NavDropdown.Item onClick={() => handleInterestSelect(null)}>Show All</NavDropdown.Item>
+            {clubData.map(club => (club.interests.map(interest => (<NavDropdown.Item key={interest} onClick={() => handleInterestSelect(interest)}>{interest}</NavDropdown.Item>))))}
           </NavDropdown>
         </li>
         <li className="px-2">
@@ -86,7 +91,7 @@ const ClubListing = () => {
         <h3>Club Listing</h3>
       </Row>
       <Row xs={1} md={2} lg={4} className="g-2 justify-content-center">
-        {clubData.map((club, index) => <MakeCard key={index} club={club} />)}
+        {filteredInterest.map((club, index) => <MakeCard key={index} club={club} />)}
       </Row>
     </Container>
   ) : <LoadingSpinner />;
