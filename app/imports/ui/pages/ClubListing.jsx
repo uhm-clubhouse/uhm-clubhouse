@@ -4,11 +4,15 @@ import { Badge, Container, Card, Row, Col, Nav, NavDropdown } from 'react-bootst
 import { useTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { _ } from 'meteor/underscore';
+// eslint-disable-next-line no-unused-vars
+import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
+import { Interests } from '../../api/interests/Interests';
 import LoadingSpinner from '../components/LoadingSpinner';
 import { pageStyle } from './pageStyles';
 import { PageIDs } from '../utilities/ids';
 import { Clubs } from '../../api/clubs/Clubs';
 import { ClubsInterests } from '../../api/clubs/ClubsInterests';
+// eslint-disable-next-line no-unused-vars
 
 /* Gets the Clubs data as well as the Interests associated with the passed Clubs name. */
 function getClubData(clubName) {
@@ -47,24 +51,29 @@ MakeCard.propTypes = {
 
 /* Renders the Project Collection as a set of Cards. */
 const ClubListing = () => {
-  const { ready } = useTracker(() => {
+  const { ready, interests } = useTracker(() => {
     // Ensure that minimongo is populated with all collections prior to running render().
     const sub1 = Meteor.subscribe(Clubs.userPublicationName);
     const sub2 = Meteor.subscribe(ClubsInterests.userPublicationName);
+    const sub3 = Meteor.subscribe(Interests.userPublicationName);
     return {
-      ready: sub1.ready() && sub2.ready(),
+      ready: sub1.ready() && sub2.ready() && sub3.ready(),
+      interests: Interests.collection.find().fetch(),
     };
   }, []);
   const clubs = _.pluck(Clubs.collection.find().fetch(), 'clubName');
   const clubData = clubs.map(club => getClubData(club));
+  const allInterests = _.pluck(interests, 'name');
+  // console.log(allInterests);
   return ready ? (
     <Container id={PageIDs.clubsPage} style={pageStyle}>
 
       <Nav className="justify-content-end">
         <li className="px-2">
           <NavDropdown title="Filter" id="filter">
-            <NavDropdown.Item href="#">Interest 1</NavDropdown.Item>
-            <NavDropdown.Item href="#">Interest 2</NavDropdown.Item>
+            {allInterests.map((interest, index) => (
+              <NavDropdown.Item key={index}>{interest}</NavDropdown.Item>
+            ))}
           </NavDropdown>
         </li>
         <li className="px-2">
