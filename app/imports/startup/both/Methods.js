@@ -93,10 +93,17 @@ const updateClubMethod = 'Clubs.update';
  * updated situation specified by the user.
  */
 Meteor.methods({
-  'Clubs.update'({ clubName, contact, interests, description }) {
-    Clubs.collection.update({ clubName }, { $set: { clubName, contact, description } });
-    ClubsInterests.collection.remove({ club: clubName });
-    interests.map((interest) => ClubsInterests.collection.insert({ club: clubName, interest }));
+  'Clubs.update'({ clubName, contact, interests, description, _id }) {
+    if (!clubName) {
+      throw new Meteor.Error('400', 'Club name is required.');
+    }
+    Clubs.collection.update(_id, { $set: { clubName, contact, description } });
+    if (interests) {
+      ClubsInterests.collection.remove({ club: clubName });
+      interests.map((interest) => ClubsInterests.collection.insert({ club: clubName, interest }));
+    } else {
+      throw new Meteor.Error('At least one interest is required.');
+    }
   },
 });
 

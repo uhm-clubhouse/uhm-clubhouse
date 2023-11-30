@@ -46,6 +46,7 @@ MakeCard.propTypes = {
     clubName: PropTypes.string,
     contact: PropTypes.string,
     interests: PropTypes.arrayOf(PropTypes.string),
+    _id: PropTypes.string,
   }).isRequired,
 };
 

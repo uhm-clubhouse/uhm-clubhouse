@@ -71,9 +71,9 @@ footer {
   --bs-nav-link-color: black;
 }
 
-#editClubs {
-  --bs-nav-link-color: blue;
+.editClubs {
+  justify-content: end;
   text-align: end;
-  padding-right: 10px;
-  padding-bottom: 5px;
+  padding-right: 15px;
+  padding-bottom: 10px;
 }

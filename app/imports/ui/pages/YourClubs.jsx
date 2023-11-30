@@ -1,10 +1,10 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Container, Card, Row, Col, Badge, Nav } from 'react-bootstrap';
+import { Container, Card, Row, Col, Badge } from 'react-bootstrap';
 import { useTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { _ } from 'meteor/underscore';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import LoadingSpinner from '../components/LoadingSpinner';
 import { pageStyle } from './pageStyles';
 import { PageIDs } from '../utilities/ids';
@@ -34,10 +34,8 @@ const MakeCard = ({ club }) => (
           <br />
         </Card.Text>
       </Card.Body>
-      <Row>
-        <Col>
-          <Nav.Link as={NavLink} to="/editclub" key="clubs" id="editClubs">Edit</Nav.Link>
-        </Col>
+      <Row className="editClubs">
+        <Link to={`/editclub/${club._id}`} key="clubs">Edit</Link>
       </Row>
     </Card>
   </Col>
@@ -49,6 +47,7 @@ MakeCard.propTypes = {
     clubName: PropTypes.string,
     contact: PropTypes.string,
     interests: PropTypes.arrayOf(PropTypes.string),
+    _id: PropTypes.string,
   }).isRequired,
 };
 

@@ -13,7 +13,7 @@ import { pageStyle } from './pageStyles';
 import { ComponentIDs, PageIDs } from '../utilities/ids';
 import { Clubs } from '../../api/clubs/Clubs';
 import { ClubsInterests } from '../../api/clubs/ClubsInterests';
-// import { updateClubMethod } from '../../startup/both/Methods';
+import { updateClubMethod } from '../../startup/both/Methods';
 import { Interests } from '../../api/interests/Interests';
 
 /* Create a schema to specify the structure of the data to appear in the form. */
@@ -27,8 +27,9 @@ const makeSchema = (allInterests) => new SimpleSchema({
 
 /* Renders the Page for adding a project. */
 const EditClub = () => {
-
+  // console.log(Clubs.collection.find().fetch());
   const { _id } = useParams();
+  // console.log('EditClub', _id);
   const { ready, interests, clubData } = useTracker(() => {
     // Ensure that minimongo is populated with all collections prior to running render().
     const sub1 = Meteor.subscribe(Interests.userPublicationName);
@@ -43,20 +44,17 @@ const EditClub = () => {
   }, [_id]);
   /* On submit, insert the data. */
   const submit = (data, formRef) => {
-    const { clubName, contact, description } = data;
-    Clubs.collection.update({ clubName }, { $set: { clubName, contact, description } }, (error) => {
+    Meteor.call(updateClubMethod, data, _id, (error) => {
       if (error) {
         swal('Error', error.message, 'error');
       } else {
-        swal('Success', 'Club created successfully', 'success').then(() => formRef.reset());
+        swal('Success', 'Club updated successfully', 'success').then(() => formRef.reset());
       }
     });
-    ClubsInterests.collection.remove({ club: clubName });
-    interests.map((interest) => ClubsInterests.collection.insert({ club: clubName, interest }));
   };
-  console.log('clubData:', clubData);
   let fRef = null;
   const allInterests = _.pluck(interests, 'name');
+  // console.log(allInterests);
   const formSchema = makeSchema(allInterests);
   const bridge = new SimpleSchema2Bridge(formSchema);
   const transform = (label) => ` ${label}`;
