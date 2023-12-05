@@ -10,6 +10,8 @@ export const ComponentIDs = {
   basicNavbarNav: 'basicNavbarNav',
   clubsMenuItem: 'clubsMenuItem',
   clubListingFilter: 'clubListingFilter',
+  clubListingSearch: 'clubListingSearch',
+  clubListingFilterDropdown: 'clubListingFilterDropdown',
   createClubFormName: 'createClubFormName',
   createClubFormContact: 'createClubFormContact',
   createClubFormInterests: 'createClubFormInterests',
