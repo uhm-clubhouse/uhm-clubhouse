@@ -20,6 +20,7 @@ import LoadingSpinner from '../components/LoadingSpinner';
 import YourClubs from '../pages/YourClubs';
 import EditClub from '../pages/EditClub';
 import Setadmin from '../pages/Setadmin';
+import Askadmin from '../pages/Askadmin';
 
 /* Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 const App = () => (
@@ -33,6 +34,7 @@ const App = () => (
         <Route path="/signout" element={<SignOut />} />
         <Route path="/listing" element={<ClubsPage />} />
         <Route path="/projects" element={<Projects />} />
+        <Route path="/ask" element={<Askadmin />} />
         <Route path="/home" element={<ProtectedRoute><UserLanding /></ProtectedRoute>} />
         <Route path="/yourclubs" element={<ProtectedRoute><YourClubs /></ProtectedRoute>} />
         <Route path="/createclub" element={<ProtectedRoute><CreateClub /></ProtectedRoute>} />
