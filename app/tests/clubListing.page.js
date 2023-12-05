@@ -1,5 +1,5 @@
 import { Selector } from 'testcafe';
-import { PageIDs } from '../imports/ui/utilities/ids';
+import { ComponentIDs, PageIDs } from '../imports/ui/utilities/ids';
 
 class ClubListingPage {
   constructor() {
@@ -12,6 +12,11 @@ class ClubListingPage {
     await testController.expect(this.pageSelector.exists).ok();
   }
 
+  /** Checks that the filter function works */
+  async goToFilter(testController) {
+    await testController.click(`#${ComponentIDs.clubListingFilter}`);
+  }
+
   /** Checks that the current page has at least two clubs on it.  */
   async hasDefaultClubs(testController) {
     const cardCount = Selector('.card').count;
@@ -19,4 +24,4 @@ class ClubListingPage {
   }
 }
 
-export const clubsPage = new ClubListingPage();
+export const clubListing = new ClubListingPage();
