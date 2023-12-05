@@ -27,7 +27,6 @@ const makeSchema = (allInterests) => new SimpleSchema({
 
 /* Renders the Page for adding a project. */
 const EditClub = () => {
-  // console.log(Clubs.collection.find().fetch());
   const { _id } = useParams();
   // console.log('EditClub', _id);
   const { ready, interests, clubData } = useTracker(() => {
@@ -55,16 +54,26 @@ const EditClub = () => {
   let fRef = null;
   const allInterests = _.pluck(interests, 'name');
   // console.log(allInterests);
-  const formSchema = makeSchema(allInterests);
+  const currentClub = clubData.clubName;
+  const clubInterests = _.pluck(ClubsInterests.collection.find({ club: currentClub }).fetch(), 'interest');
+  const formSchema = makeSchema(allInterests, clubInterests);
   const bridge = new SimpleSchema2Bridge(formSchema);
-  const transform = (label) => ` ${label}`;
+  const transform = (label) => `${label}`;
+  const model = {
+    clubName: clubData.clubName,
+    contact: clubData.contact,
+    description: clubData.description,
+    interests: clubInterests,
+    _id: clubData._id,
+  };
+  // console.log(clubInterests);
   /* Render the form. Use Uniforms: https://github.com/vazco/uniforms */
   return ready ? (
     <Container style={pageStyle}>
       <Row id={PageIDs.editClubPage} className="justify-content-center">
         <Col xs={6}>
           <Col className="text-center"><h2>Edit Club</h2></Col>
-          <AutoForm ref={ref => { fRef = ref; }} schema={bridge} onSubmit={data => submit(data, fRef)} model={clubData}>
+          <AutoForm ref={ref => { fRef = ref; }} schema={bridge} onSubmit={data => submit(data, fRef)} model={model}>
             <Card>
               <Card.Body>
                 <Row>
@@ -74,7 +83,16 @@ const EditClub = () => {
                 </Row>
                 <Row>
                   <Col xs={6} id={ComponentIDs.editClubFormInterests}>
-                    <SelectField label="Related interests: (Select that apply)" name="interests" showInlineError placeholder="Interests" multiple checkboxes transform={transform} />
+                    <SelectField
+                      label="Related interests: (Select that apply)"
+                      name="interests"
+                      showInlineError
+                      placeholder="Interests"
+                      multiple
+                      checkboxes
+                      transform={transform}
+                      allowedValues={allInterests}
+                    />
                   </Col>
                   <LongTextField id={ComponentIDs.editClubFormDescription} label="Description" name="description" />
                 </Row>

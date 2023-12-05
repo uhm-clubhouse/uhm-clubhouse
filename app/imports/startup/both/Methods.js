@@ -88,8 +88,8 @@ Meteor.methods({
 const updateClubMethod = 'Clubs.update';
 
 /**
- * The server-side Profiles.update Meteor Method is called by the client-side Home page after pushing the update button.
- * Its purpose is to update the Profiles, ProfilesInterests, and ProfilesProjects collections to reflect the
+ * The server-side Clubs.update Meteor Method is called by the client-side Home page after pushing the update button.
+ * Its purpose is to update the Clubs and ClubsInterests collections to reflect the
  * updated situation specified by the user.
  */
 Meteor.methods({
@@ -98,8 +98,8 @@ Meteor.methods({
       throw new Meteor.Error('400', 'Club name is required.');
     }
     Clubs.collection.update(_id, { $set: { clubName, contact, description } });
+    ClubsInterests.collection.remove({ club: clubName });
     if (interests) {
-      ClubsInterests.collection.remove({ club: clubName });
       interests.map((interest) => ClubsInterests.collection.insert({ club: clubName, interest }));
     } else {
       throw new Meteor.Error('At least one interest is required.');

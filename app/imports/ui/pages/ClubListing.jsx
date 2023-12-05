@@ -67,13 +67,17 @@ const ClubListing = () => {
   const allInterests = _.pluck(interests, 'name');
   console.log(allInterests);
   console.log(clubData);
-  //
   const [selectedInterest, setSelectedInterest] = useState(null);
+  const [query, setQuery] = useState('');
   const handleInterestSelect = (interest) => {
     setSelectedInterest(interest);
   };
+  const handleSearch = event => {
+    const { value } = event.target;
+    setQuery(value.toLowerCase());
+  };
   const filteredInterest = selectedInterest ? clubData.filter(club => club.interests.includes(selectedInterest)) : clubData;
-  //
+  const searchClubs = query ? filteredInterest.filter(club => club.clubName.toLowerCase().includes(query) || club.description.toLowerCase().includes(query)) : filteredInterest;
   return ready ? (
     <Container id={PageIDs.clubsPage} style={pageStyle}>
       <Nav className="justify-content-end">
@@ -84,7 +88,7 @@ const ClubListing = () => {
           </NavDropdown>
         </li>
         <li className="px-2">
-          <input type="text" placeholder="Search" />
+          <input type="text" placeholder="Search" onChange={handleSearch} />
         </li>
       </Nav>
 
@@ -92,7 +96,7 @@ const ClubListing = () => {
         <h3>Club Listing</h3>
       </Row>
       <Row xs={1} md={2} lg={4} className="g-2 justify-content-center">
-        {filteredInterest.map((club, index) => <MakeCard key={index} club={club} />)}
+        {searchClubs.map((club, index) => <MakeCard key={index} club={club} />)}
       </Row>
     </Container>
   ) : <LoadingSpinner />;
