@@ -5,14 +5,13 @@ import swal from 'sweetalert';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
 import SimpleSchema from 'simpl-schema';
 import { Meteor } from 'meteor/meteor';
-import { Roles } from 'meteor/alanning:roles';
 import { useTracker } from 'meteor/react-meteor-data';
 // eslint-disable-next-line no-unused-vars
 import { _ } from 'meteor/underscore';
 import LoadingSpinner from '../components/LoadingSpinner';
 import { pageStyle } from './pageStyles';
 import { ComponentIDs, PageIDs } from '../utilities/ids';
-import { Profiles } from '../../api/profiles/Profiles';
+import { ProfilesAdmin } from '../../api/profiles/ProfilesAdmin';
 
 /* Create a schema to specify the structure of the data to appear in the form. */
 const makeSchema = () => new SimpleSchema({
@@ -24,22 +23,15 @@ const Askadmin = () => {
 
   /* On submit, insert the data. */
   const submit = (data, formRef) => {
-    Profiles.collection.insert(
+    ProfilesAdmin.collection.insert(
       // eslint-disable-next-line no-undef
       { role },
       (error) => {
         if (error) {
           swal('Error', error.message, 'error');
         } else {
-          swal('Success', 'Item added successfully', 'success');
+          swal('Success', 'Email added successfully', 'success');
           formRef.reset();
-        }
-        // eslint-disable-next-line no-undef
-        if (role === null) {
-          // eslint-disable-next-line no-undef
-          Roles.createRole(role, { unlessExists: true });
-          // eslint-disable-next-line no-undef
-          Roles.addUsersToRoles(userID, 'admin');
         }
       },
     );
@@ -47,11 +39,11 @@ const Askadmin = () => {
 
   const { ready, profile } = useTracker(() => {
     // Ensure that minimongo is populated with all collections prior to running render().
-    const sub1 = Meteor.subscribe(Profiles.userPublicationName);
+    const sub1 = Meteor.subscribe(ProfilesAdmin.userPublicationName);
 
     return {
       ready: sub1.ready(),
-      profile: Profiles.collection.find().fetch(),
+      profile: ProfilesAdmin.collection.find().fetch(),
     };
   }, []);
 
