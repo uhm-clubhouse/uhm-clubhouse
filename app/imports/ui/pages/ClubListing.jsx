@@ -65,8 +65,8 @@ const ClubListing = () => {
   const clubs = _.pluck(Clubs.collection.find().fetch(), 'clubName');
   const clubData = clubs.map(club => getClubData(club));
   const allInterests = _.pluck(interests, 'name');
-  console.log(allInterests);
-  console.log(clubData);
+  // console.log(allInterests);
+  // console.log(clubData);
   const [selectedInterest, setSelectedInterest] = useState(null);
   const [query, setQuery] = useState('');
   const handleInterestSelect = (interest) => {
