@@ -36,12 +36,12 @@ function addInterest(interest) {
 }
 
 /** Defines a new user and associated profile. Error if user already exists. */
-function addProfile({ firstName, lastName, bio, title, interests, projects, picture, email, password, role }) {
+function addProfile({ interests, projects, email, password, role }) {
   console.log(`Defining profile ${email}`);
   // Define the user in the Meteor accounts package.
   createUser(email, password, role);
   // Create the profile.
-  Profiles.collection.insert({ firstName, lastName, bio, title, picture, email });
+  Profiles.collection.insert({ email, role });
   // Add interests and projects.
   interests.map(interest => ProfilesInterests.collection.insert({ profile: email, interest }));
   projects.map(project => ProfilesProjects.collection.insert({ profile: email, project }));
