@@ -65,6 +65,35 @@ test('Test that admin can log in and sign out', async (testController) => {
   await navBar.ensureLogout(testController);
 });
 
+test('Test that club listing page displays for admins', async (testController) => {
+  await navBar.ensureLogout(testController);
+  await navBar.gotoSignInPage(testController);
+  await signInPage.signin(testController, credentials.adminusername, credentials.adminpassword);
+  await navBar.gotoClubListingPage(testController);
+  await clubListing.isDisplayed(testController);
+  await clubListing.hasDefaultClubs(testController);
+});
+
+test('Test that club listing page displays and filter function works for admins', async (testController) => {
+  await navBar.ensureLogout(testController);
+  await navBar.gotoSignInPage(testController);
+  await signInPage.signin(testController, credentials.adminusername, credentials.adminpassword);
+  await navBar.gotoClubListingPage(testController);
+  await clubListing.isDisplayed(testController);
+  await clubListing.hasDefaultClubs(testController);
+  await clubListing.goToFilter(testController);
+});
+
+test('Test that club listing page displays and search function works for admins', async (testController) => {
+  await navBar.ensureLogout(testController);
+  await navBar.gotoSignInPage(testController);
+  await signInPage.signin(testController, credentials.adminusername, credentials.adminpassword);
+  await navBar.gotoClubListingPage(testController);
+  await clubListing.isDisplayed(testController);
+  await clubListing.hasDefaultClubs(testController);
+  await clubListing.goToSearch(testController);
+});
+
 test('Test that your clubs page works for admins', async (testController) => {
   await navBar.ensureLogout(testController);
   await navBar.gotoSignInPage(testController);
@@ -99,6 +128,26 @@ test('Test that your clubs page works for super admins', async (testController) 
   await navBar.gotoYourClubsPage(testController);
   await yourClubsPage.isDisplayed(testController);
   await navBar.ensureLogout(testController);
+});
+
+test('Test that club listing page displays and filter function works for super admins', async (testController) => {
+  await navBar.ensureLogout(testController);
+  await navBar.gotoSignInPage(testController);
+  await signInPage.signin(testController, credentials.sadminusername, credentials.sadminpassword);
+  await navBar.gotoClubListingPage(testController);
+  await clubListing.isDisplayed(testController);
+  await clubListing.hasDefaultClubs(testController);
+  await clubListing.goToFilter(testController);
+});
+
+test('Test that club listing page displays and search function works for super admins', async (testController) => {
+  await navBar.ensureLogout(testController);
+  await navBar.gotoSignInPage(testController);
+  await signInPage.signin(testController, credentials.sadminusername, credentials.sadminpassword);
+  await navBar.gotoClubListingPage(testController);
+  await clubListing.isDisplayed(testController);
+  await clubListing.hasDefaultClubs(testController);
+  await clubListing.goToSearch(testController);
 });
 
 test('Test that create club page works for super admins', async (testController) => {

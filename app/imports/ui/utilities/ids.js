@@ -11,6 +11,7 @@ export const ComponentIDs = {
   clubsMenuItem: 'clubsMenuItem',
   clubListingFilter: 'clubListingFilter',
   clubListingSearch: 'clubListingSearch',
+  clubListingShowAll: 'clubListingShowAll',
   clubListingFilterDropdown: 'clubListingFilterDropdown',
   createClubFormName: 'createClubFormName',
   createClubFormContact: 'createClubFormContact',
