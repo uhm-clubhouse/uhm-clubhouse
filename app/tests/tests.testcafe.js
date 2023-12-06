@@ -50,7 +50,7 @@ test('Test that club listing page displays and filter function works', async (te
   await clubListing.goToFilter(testController);
 });
 
-test.only('Test that club listing page displays and search function works', async (testController) => {
+test('Test that club listing page displays and search function works', async (testController) => {
   await navBar.gotoClubListingPage(testController);
   await clubListing.isDisplayed(testController);
   await clubListing.hasDefaultClubs(testController);
