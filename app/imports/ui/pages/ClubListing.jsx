@@ -9,7 +9,7 @@ import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
 import { Interests } from '../../api/interests/Interests';
 import LoadingSpinner from '../components/LoadingSpinner';
 import { pageStyle } from './pageStyles';
-import { PageIDs } from '../utilities/ids';
+import { ComponentIDs, PageIDs } from '../utilities/ids';
 import { Clubs } from '../../api/clubs/Clubs';
 import { ClubsInterests } from '../../api/clubs/ClubsInterests';
 // eslint-disable-next-line no-unused-vars
@@ -82,13 +82,13 @@ const ClubListing = () => {
     <Container id={PageIDs.clubsPage} style={pageStyle}>
       <Nav className="justify-content-end">
         <li className="px-2">
-          <NavDropdown title={selectedInterest ? `Filter by ${selectedInterest}` : 'Filter by Interest'} id="filter">
-            <NavDropdown.Item onClick={() => handleInterestSelect(null)}>Show All</NavDropdown.Item>
-            {allInterests.map(interest => (<NavDropdown.Item key={interest} onClick={() => handleInterestSelect(interest)}>{interest}</NavDropdown.Item>))}
+          <NavDropdown title={selectedInterest ? `Filter by ${selectedInterest}` : 'Filter by Interest'} id={ComponentIDs.clubListingFilter}>
+            <NavDropdown.Item onClick={() => handleInterestSelect(null)} id={ComponentIDs.clubListingFilterDropdown}>Show All</NavDropdown.Item>
+            {allInterests.map(interest => (<NavDropdown.Item key={interest} onClick={() => handleInterestSelect(interest)} id={ComponentIDs.clubListingFilterDropdown}>{interest}</NavDropdown.Item>))}
           </NavDropdown>
         </li>
         <li className="px-2">
-          <input type="text" placeholder="Search" onChange={handleSearch} />
+          <input id={ComponentIDs.clubListingSearch} type="text" placeholder="Search" onChange={handleSearch} />
         </li>
       </Nav>
 

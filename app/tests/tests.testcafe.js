@@ -3,7 +3,7 @@ import { signInPage } from './signin.page';
 import { signOutPage } from './signout.page';
 import { signupPage } from './signup.page';
 import { navBar } from './navbar.component';
-import { clubsPage } from './clubListing.page';
+import { clubListing } from './clubListing.page';
 import { yourClubsPage } from './yourClubs.page';
 import { createClubPage } from './createClub.page';
 import { setAdminPage } from './setAdmin.page';
@@ -39,15 +39,29 @@ test('Test that signup page, then logout works', async (testController) => {
 
 test('Test that club listing page displays', async (testController) => {
   await navBar.gotoClubListingPage(testController);
-  await clubsPage.isDisplayed(testController);
-  await clubsPage.hasDefaultClubs(testController);
+  await clubListing.isDisplayed(testController);
+  await clubListing.hasDefaultClubs(testController);
+});
+
+test('Test that club listing page displays and filter function works', async (testController) => {
+  await navBar.gotoClubListingPage(testController);
+  await clubListing.isDisplayed(testController);
+  await clubListing.hasDefaultClubs(testController);
+  await clubListing.goToFilter(testController);
+});
+
+test.only('Test that club listing page displays and search function works', async (testController) => {
+  await navBar.gotoClubListingPage(testController);
+  await clubListing.isDisplayed(testController);
+  await clubListing.hasDefaultClubs(testController);
+  await clubListing.goToSearch(testController);
 });
 
 test('Test that admin can log in and sign out', async (testController) => {
   await navBar.ensureLogout(testController);
   await navBar.gotoSignInPage(testController);
   await signInPage.signin(testController, credentials.adminusername, credentials.adminpassword);
-  await clubsPage.isDisplayed(testController);
+  await clubListing.isDisplayed(testController);
   await navBar.ensureLogout(testController);
 });
 
@@ -74,7 +88,7 @@ test('Test that super admin can log in and sign out', async (testController) => 
   await navBar.ensureLogout(testController);
   await navBar.gotoSignInPage(testController);
   await signInPage.signin(testController, credentials.sadminusername, credentials.sadminpassword);
-  await clubsPage.isDisplayed(testController);
+  await clubListing.isDisplayed(testController);
   await navBar.ensureLogout(testController);
 });
 
