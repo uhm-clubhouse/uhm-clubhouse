@@ -58,7 +58,7 @@ const EditClub = () => {
   const clubInterests = _.pluck(ClubsInterests.collection.find({ club: currentClub }).fetch(), 'interest');
   const formSchema = makeSchema(allInterests, clubInterests);
   const bridge = new SimpleSchema2Bridge(formSchema);
-  const transform = (label) => `${label}`;
+  const transform = (label) => ` ${label}`;
   const model = {
     clubName: clubData.clubName,
     contact: clubData.contact,

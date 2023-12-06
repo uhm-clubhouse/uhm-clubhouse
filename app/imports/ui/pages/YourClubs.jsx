@@ -5,6 +5,7 @@ import { useTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { _ } from 'meteor/underscore';
 import swal from 'sweetalert';
+import { Link } from 'react-router-dom';
 import LoadingSpinner from '../components/LoadingSpinner';
 import { pageStyle } from './pageStyles';
 import { ComponentIDs, PageIDs } from '../utilities/ids';
@@ -63,7 +64,7 @@ const MakeCard = ({ club }) => {
             <Button id={ComponentIDs.yourClubsDelete} className="btn btn-danger" onClick={removeClub} key="clubs">Delete</Button>
           </Col>
           <Col className="editClubs">
-            <Button id={ComponentIDs.yourClubsEdit} className="btn btn-primary" to={`/editclub/${club._id}`} key="clubs">Edit</Button>
+            <Link id={ComponentIDs.yourClubsEdit} className="btn btn-primary" to={`/editclub/${club._id}`} key="clubs">Edit</Link>
           </Col>
           <Col />
         </Row>
