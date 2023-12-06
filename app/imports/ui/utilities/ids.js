@@ -49,6 +49,7 @@ export const ComponentIDs = {
   editClubFormInterests: 'editClubFormInterests',
   editClubFormDescription: 'editClubFormDescription',
   editClubFormSubmit: 'editClubFormSubmit',
+  yourClubsEdit: 'yourClubsEdit',
   yourClubsMenuItem: 'yourClubsMenuItem',
 };
 
