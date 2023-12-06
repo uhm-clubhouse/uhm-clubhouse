@@ -7,7 +7,7 @@ import { _ } from 'meteor/underscore';
 import { Link } from 'react-router-dom';
 import LoadingSpinner from '../components/LoadingSpinner';
 import { pageStyle } from './pageStyles';
-import { PageIDs } from '../utilities/ids';
+import { ComponentIDs, PageIDs } from '../utilities/ids';
 import { Clubs } from '../../api/clubs/Clubs';
 import { ClubsInterests } from '../../api/clubs/ClubsInterests';
 import { Interests } from '../../api/interests/Interests';
@@ -36,7 +36,7 @@ const MakeCard = ({ club }) => (
         </Card.Text>
       </Card.Body>
       <Row className="editClubs">
-        <Link to={`/editclub/${club._id}`} key="clubs">Edit</Link>
+        <Link id={ComponentIDs.yourClubsEdit} to={`/editclub/${club._id}`} key="clubs">Edit</Link>
       </Row>
     </Card>
   </Col>

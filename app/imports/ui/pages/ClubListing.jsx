@@ -83,7 +83,7 @@ const ClubListing = () => {
       <Nav className="justify-content-end">
         <li className="px-2">
           <NavDropdown title={selectedInterest ? `Filter by ${selectedInterest}` : 'Filter by Interest'} id={ComponentIDs.clubListingFilter}>
-            <NavDropdown.Item onClick={() => handleInterestSelect(null)} id={ComponentIDs.clubListingFilterDropdown}>Show All</NavDropdown.Item>
+            <NavDropdown.Item onClick={() => handleInterestSelect(null)} id={ComponentIDs.clubListingShowAll}>Show All</NavDropdown.Item>
             {allInterests.map(interest => (<NavDropdown.Item key={interest} onClick={() => handleInterestSelect(interest)} id={ComponentIDs.clubListingFilterDropdown}>{interest}</NavDropdown.Item>))}
           </NavDropdown>
         </li>

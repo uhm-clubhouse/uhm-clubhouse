@@ -1,5 +1,5 @@
 import { Selector } from 'testcafe';
-import { PageIDs } from '../imports/ui/utilities/ids';
+import { ComponentIDs, PageIDs } from '../imports/ui/utilities/ids';
 
 class YourClubsPage {
   constructor() {
@@ -10,6 +10,11 @@ class YourClubsPage {
   /** Checks that this page is currently displayed. */
   async isDisplayed(testController) {
     await testController.expect(this.pageSelector.exists).ok();
+  }
+
+  async gotoEdit(testController) {
+    await this.isDisplayed(testController);
+    await testController.click(`#${ComponentIDs.yourClubsEdit}`);
   }
 
   /** Checks that the current page has at least two clubs on it.  */
