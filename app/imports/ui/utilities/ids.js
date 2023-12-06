@@ -50,7 +50,8 @@ export const ComponentIDs = {
   editClubFormDescription: 'editClubFormDescription',
   editClubFormSubmit: 'editClubFormSubmit',
   yourClubsEdit: 'yourClubsEdit',
-  yourClubsMenuItem: 'yourClubsMenuItem',
+  yourClubsMenuItem: 'yourClubsMenuItem', yourClubsDelete: undefined
+
 };
 
 export const PageIDs = {

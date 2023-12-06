@@ -107,4 +107,17 @@ Meteor.methods({
   },
 });
 
-export { updateProfileMethod, addProjectMethod, createClubMethod, updateClubMethod };
+const removeClubMethod = 'Clubs.remove';
+
+/**
+ * The server-side Clubs.update Meteor Method is called by the client-side Home page after pushing the update button.
+ * Its purpose is to update the Clubs and ClubsInterests collections to reflect the
+ * updated situation specified by the user.
+ */
+Meteor.methods({
+  'Clubs.remove'({ _id }) {
+    Clubs.collection.remove({ _id });
+  },
+});
+
+export { updateProfileMethod, addProjectMethod, createClubMethod, updateClubMethod, removeClubMethod };

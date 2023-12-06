@@ -72,8 +72,10 @@ footer {
 }
 
 .editClubs {
-  justify-content: end;
-  text-align: end;
-  padding-right: 15px;
+  padding-left: 100px;
+  padding-bottom: 10px;
+}
+.deleteClubs {
+  padding-left: 30px;
   padding-bottom: 10px;
 }

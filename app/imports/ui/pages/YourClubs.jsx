@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Container, Card, Row, Col, Badge, Nav, NavDropdown } from 'react-bootstrap';
+import { Container, Card, Row, Col, Badge, Nav, NavDropdown, Button } from 'react-bootstrap';
 import { useTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { _ } from 'meteor/underscore';
-import { Link } from 'react-router-dom';
+import swal from 'sweetalert';
 import LoadingSpinner from '../components/LoadingSpinner';
 import { pageStyle } from './pageStyles';
 import { ComponentIDs, PageIDs } from '../utilities/ids';
 import { Clubs } from '../../api/clubs/Clubs';
 import { ClubsInterests } from '../../api/clubs/ClubsInterests';
 import { Interests } from '../../api/interests/Interests';
+import { removeClubMethod } from '../../startup/both/Methods';
 
 /* Gets the Clubs data as well as the Interests associated with the passed Clubs name. */
 function getClubData(clubName) {
@@ -19,28 +20,57 @@ function getClubData(clubName) {
   return _.extend({}, data, { interests });
 }
 
-/* Component for layout out a Profile Card. */
-const MakeCard = ({ club }) => (
-  <Col>
-    <Card className="h-100">
-      <Card.Header>
-        <Card.Title style={{ marginTop: '0px' }}>{club.clubName}</Card.Title>
-        <Card.Subtitle><span className="date">{club.contact}</span></Card.Subtitle>
-      </Card.Header>
-      <Card.Body>
-        <Card.Text>
-          {club.description}
-          <br />
-          {club.interests.map((interest, index) => <Badge key={index} bg="info">{interest}</Badge>)}
-          <br />
-        </Card.Text>
-      </Card.Body>
-      <Row className="editClubs">
-        <Link id={ComponentIDs.yourClubsEdit} to={`/editclub/${club._id}`} key="clubs">Edit</Link>
-      </Row>
-    </Card>
-  </Col>
-);
+/* Component for layout out a Club Card. */
+const MakeCard = ({ club }) => {
+  const removeClub = () => {
+    swal({
+      title: 'Are you sure?',
+      text: 'Once removed, you will not be able to restore this club.',
+      icon: 'warning',
+      buttons: true,
+      dangerMode: true,
+    })
+      .then((willDelete) => {
+        if (willDelete) {
+          Meteor.call(removeClubMethod, { _id: club._id }, (error) => {
+            if (error) {
+              swal('Error', error.message, 'error');
+            } else {
+              swal('Success', 'Club removed successfully', 'success');
+            }
+          });
+        }
+      });
+  };
+  return (
+    <Col>
+      <Card className="h-100">
+        <Card.Header>
+          <Card.Title style={{ marginTop: '0px' }}>{club.clubName}</Card.Title>
+          <Card.Subtitle><span className="date">{club.contact}</span></Card.Subtitle>
+        </Card.Header>
+        <Card.Body>
+          <Card.Text>
+            {club.description}
+            <br />
+            {club.interests.map((interest, index) => <Badge key={index} bg="info">{interest}</Badge>)}
+            <br />
+          </Card.Text>
+        </Card.Body>
+        <Row>
+          <Col />
+          <Col className="deleteClubs">
+            <Button id={ComponentIDs.yourClubsDelete} className="btn btn-danger" onClick={removeClub} key="clubs">Delete</Button>
+          </Col>
+          <Col className="editClubs">
+            <Button id={ComponentIDs.yourClubsEdit} className="btn btn-primary" to={`/editclub/${club._id}`} key="clubs">Edit</Button>
+          </Col>
+          <Col />
+        </Row>
+      </Card>
+    </Col>
+  );
+};
 
 MakeCard.propTypes = {
   club: PropTypes.shape({
@@ -78,6 +108,7 @@ const YourClubs = () => {
   };
   const filteredInterest = selectedInterest ? clubData.filter(club => club.interests.includes(selectedInterest)) : clubData;
   const searchClubs = query ? filteredInterest.filter(club => club.clubName.toLowerCase().includes(query) || club.description.toLowerCase().includes(query)) : filteredInterest;
+
   return ready ? (
     <Container id={PageIDs.yourClubsPage} style={pageStyle}>
       <Nav className="justify-content-end">
