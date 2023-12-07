@@ -64,7 +64,7 @@ const Setadmin = () => {
   return ready ? (
     <Container style={pageStyle} id={PageIDs.setAdminPage}>
       <Row className="justify-content-center">
-        <Col xs={10}>
+        <Col xs={6}>
           <Col className="text-center"><h2>Set Admin</h2></Col>
           <AutoForm ref={ref => { fRef = ref; }} schema={bridge} onSubmit={data => submit(data, fRef)}>
             <Card>
