@@ -12,6 +12,8 @@ import LoadingSpinner from '../components/LoadingSpinner';
 import { pageStyle } from './pageStyles';
 import { ComponentIDs, PageIDs } from '../utilities/ids';
 import { ProfilesAdmin } from '../../api/profiles/ProfilesAdmin';
+// eslint-disable-next-line import/named
+import { addProfileAdmin } from '../../startup/both/Methods';
 
 /* Create a schema to specify the structure of the data to appear in the form. */
 const makeSchema = () => new SimpleSchema({
@@ -23,21 +25,16 @@ const Askadmin = () => {
 
   /* On submit, insert the data. */
   const submit = (data, formRef) => {
-    ProfilesAdmin.collection.insert(
-      // eslint-disable-next-line no-undef
-      { role },
-      (error) => {
-        if (error) {
-          swal('Error', error.message, 'error');
-        } else {
-          swal('Success', 'Email added successfully', 'success');
-          formRef.reset();
-        }
-      },
-    );
+    Meteor.call(addProfileAdmin, data, (error) => {
+      if (error) {
+        swal('Error', error.message, 'error');
+      } else {
+        swal('Success', 'Club created successfully', 'success').then(() => formRef.reset());
+      }
+    });
   };
 
-  const { ready, profile } = useTracker(() => {
+  const { ready } = useTracker(() => {
     // Ensure that minimongo is populated with all collections prior to running render().
     const sub1 = Meteor.subscribe(ProfilesAdmin.userPublicationName);
 
@@ -48,7 +45,7 @@ const Askadmin = () => {
   }, []);
 
   let fRef = null;
-  const formSchema = makeSchema(profile);
+  const formSchema = makeSchema();
   const bridge = new SimpleSchema2Bridge(formSchema);
   // eslint-disable-next-line no-unused-vars
   const transform = (label) => ` ${label}`;
