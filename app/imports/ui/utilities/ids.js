@@ -74,4 +74,5 @@ export const PageIDs = {
   editClubPage: 'editClubPage',
   yourClubsPage: 'yourClubsPage',
   setAdminPage: 'setAdminPage',
+  askAdminPage: 'askAdminPage',
 };

@@ -8,6 +8,7 @@ import { yourClubsPage } from './yourClubs.page';
 import { createClubPage } from './createClub.page';
 import { setAdminPage } from './setAdmin.page';
 import { editClubPage } from './editClub.page';
+import { askAdminPage } from './askAdmin.page';
 /* global fixture:false, test:false */
 
 /** Credentials for one of the sample users defined in settings.development.json. */
@@ -52,6 +53,14 @@ test('Test that admin can log in and sign out', async (testController) => {
   await signInPage.signin(testController, credentials.adminusername, credentials.adminpassword);
   await clubListing.isDisplayed(testController);
   await navBar.ensureLogout(testController);
+});
+
+test.only('Test that admin request form page displays', async (testController) => {
+  await navBar.ensureLogout(testController);
+  await navBar.gotoSignInPage(testController);
+  await signInPage.signin(testController, credentials.adminusername, credentials.adminpassword);
+  await navBar.gotoAdminRequestPage(testController);
+  await askAdminPage.isDisplayed(testController);
 });
 
 test('Test that club listing page displays and the filter and search function works for admins', async (testController) => {
@@ -127,7 +136,7 @@ test('Test that your clubs page and editing a club works for super admins', asyn
   await navBar.ensureLogout(testController);
 });
 
-test.only('Test that your clubs page and deleting a club works for super admins', async (testController) => {
+test('Test that your clubs page and deleting a club works for super admins', async (testController) => {
   await navBar.ensureLogout(testController);
   await navBar.gotoSignInPage(testController);
   await signInPage.signin(testController, credentials.sadminusername, credentials.sadminpassword);
