@@ -77,6 +77,15 @@ test('Test that your clubs page and editing a club works for admins', async (tes
   await navBar.ensureLogout(testController);
 });
 
+test('Test that your clubs page and deleting a club works for admins', async (testController) => {
+  await navBar.ensureLogout(testController);
+  await navBar.gotoSignInPage(testController);
+  await signInPage.signin(testController, credentials.adminusername, credentials.adminpassword);
+  await navBar.gotoYourClubsPage(testController);
+  await yourClubsPage.isDisplayed(testController);
+  await yourClubsPage.deleteClub(testController);
+});
+
 test('Test that create club page works for admins', async (testController) => {
   await navBar.ensureLogout(testController);
   await navBar.gotoSignInPage(testController);
@@ -116,6 +125,15 @@ test('Test that your clubs page and editing a club works for super admins', asyn
   await editClubPage.isDisplayed(testController);
   await editClubPage.editClub(testController);
   await navBar.ensureLogout(testController);
+});
+
+test.only('Test that your clubs page and deleting a club works for super admins', async (testController) => {
+  await navBar.ensureLogout(testController);
+  await navBar.gotoSignInPage(testController);
+  await signInPage.signin(testController, credentials.sadminusername, credentials.sadminpassword);
+  await navBar.gotoYourClubsPage(testController);
+  await yourClubsPage.isDisplayed(testController);
+  await yourClubsPage.deleteClub(testController);
 });
 
 test('Test that create club page works for super admins', async (testController) => {

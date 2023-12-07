@@ -48,6 +48,10 @@ footer {
   color: black;
 }
 
+.nav-link{
+  --bs-nav-link-color: black;
+}
+
 /* Landing page color blocking */
 .landing-green-background {
   background-color: #e3f7c0;
@@ -79,3 +83,4 @@ footer {
   padding-left: 30px;
   padding-bottom: 10px;
 }
+
