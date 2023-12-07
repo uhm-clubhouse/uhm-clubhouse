@@ -51,7 +51,7 @@ const Askadmin = () => {
   const transform = (label) => ` ${label}`;
   /* Render the form. Use Uniforms: https://github.com/vazco/uniforms */
   return ready ? (
-    <Container style={pageStyle} id={PageIDs.setAdminPage}>
+    <Container style={pageStyle} id={PageIDs.askAdminPage}>
       <Row className="justify-content-center">
         <Col xs={6}>
           <Col className="text-center"><h2>Type in the email associated with the account you want to make an admin.</h2></Col>

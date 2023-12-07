@@ -50,7 +50,9 @@ export const ComponentIDs = {
   editClubFormDescription: 'editClubFormDescription',
   editClubFormSubmit: 'editClubFormSubmit',
   yourClubsEdit: 'yourClubsEdit',
-  yourClubsMenuItem: 'yourClubsMenuItem', yourClubsDelete: undefined
+  yourClubsMenuItem: 'yourClubsMenuItem',
+  adminRequestItem: 'adminRequestItem',
+  yourClubsDelete: 'yourClubsDelete',
 
 };
 
@@ -72,4 +74,5 @@ export const PageIDs = {
   editClubPage: 'editClubPage',
   yourClubsPage: 'yourClubsPage',
   setAdminPage: 'setAdminPage',
+  askAdminPage: 'askAdminPage',
 };

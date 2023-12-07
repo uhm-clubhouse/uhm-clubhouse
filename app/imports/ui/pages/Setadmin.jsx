@@ -30,6 +30,23 @@ const Setadmin = () => {
 
       <Row className="text-center">
         <h3>Admin Requests</h3>
+    <Container style={pageStyle} id={PageIDs.setAdminPage}>
+      <Row className="justify-content-center">
+        <Col xs={6}>
+          <Col className="text-center"><h2>Set Admin</h2></Col>
+          <AutoForm ref={ref => { fRef = ref; }} schema={bridge} onSubmit={data => submit(data, fRef)}>
+            <Card>
+              <Card.Body>
+                <Row>
+                  <Col xs={6}><TextField id={ComponentIDs.setAdminEmail} label="Add Admin" name="email" showInlineError />
+                  </Col>
+                </Row>
+                <SubmitField id={ComponentIDs.setAdminFormSubmit} value="Submit" />
+                <ErrorsField />
+              </Card.Body>
+            </Card>
+          </AutoForm>
+        </Col>
       </Row>
     </Container>
   ) : <LoadingSpinner />;

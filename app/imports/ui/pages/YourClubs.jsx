@@ -62,16 +62,29 @@ const MakeCard = ({ club }) => {
             <br />
           </Card.Text>
         </Card.Body>
-        <Row>
-          <Col />
-          <Col className="deleteClubs">
-            <Button id={ComponentIDs.yourClubsDelete} className="btn btn-danger" onClick={removeClub} key="clubs">Delete</Button>
-          </Col>
-          <Col className="editClubs">
-            <Link id={ComponentIDs.yourClubsEdit} className="btn btn-primary" to={`/editclub/${club._id}`} key="clubs">Edit</Link>
-          </Col>
-          <Col />
-        </Row>
+        <Card.Footer>
+          <Row><Col />
+            <Col>
+              <Button
+                id={ComponentIDs.yourClubsDelete}
+                className="btn btn-danger btn-sm"
+                onClick={removeClub}
+                key="clubs"
+              >Delete
+              </Button>
+            </Col>
+            <Col>
+              <Link
+                id={ComponentIDs.yourClubsEdit}
+                className="btn btn-primary btn-sm"
+                to={`/editclub/${club._id}`}
+                key="clubs"
+              >Edit
+              </Link>
+            </Col>
+            <Col />
+          </Row>
+        </Card.Footer>
       </Card>
     </Col>
   );
@@ -87,7 +100,7 @@ MakeCard.propTypes = {
   }).isRequired,
 };
 
-/* Renders the Project Collection as a set of Cards. */
+/* Renders the Clubs Collection as a set of Cards. */
 const YourClubs = () => {
   const { ready, interests } = useTracker(() => {
     // Ensure that minimongo is populated with all collections prior to running render().
@@ -104,6 +117,7 @@ const YourClubs = () => {
   const allInterests = _.pluck(interests, 'name');
   const [selectedInterest, setSelectedInterest] = useState(null);
   const [query, setQuery] = useState('');
+  /* Handles the interest filter and search function */
   const handleInterestSelect = (interest) => {
     setSelectedInterest(interest);
   };

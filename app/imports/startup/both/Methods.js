@@ -71,7 +71,7 @@ Meteor.methods({
 
 const createClubMethod = 'Clubs.create';
 
-/** Creates a new project in the Clubs collection, and also updates ClubsInterests. */
+/** Creates a new club in the Clubs collection, and also updates ClubsInterests. */
 Meteor.methods({
   'Clubs.create'({ clubName, contact, interests, description }) {
     if (!clubName) {
@@ -111,11 +111,7 @@ Meteor.methods({
 
 const removeClubMethod = 'Clubs.remove';
 
-/**
- * The server-side Clubs.update Meteor Method is called by the client-side Home page after pushing the update button.
- * Its purpose is to update the Clubs and ClubsInterests collections to reflect the
- * updated situation specified by the user.
- */
+/** Removes a club in the Clubs collection, and also removed the clubs interests in the ClubsInterest collection. */
 Meteor.methods({
   'Clubs.remove'({ _id }) {
     const club = Clubs.collection.findOne({ _id });
