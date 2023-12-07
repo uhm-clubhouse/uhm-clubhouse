@@ -12,7 +12,7 @@ import { ClubsInterests } from '../../api/clubs/ClubsInterests';
 import { ProfilesClubs } from '../../api/profiles/ProfilesClubs';
 
 /* Gets the Clubs data as well as the Interests associated with the passed Clubs name. */
-function getClubData(clubName) {
+function getProfileClubData(clubName) {
   const data = ProfilesClubs.collection.findOne({ clubName });
   const interests = _.pluck(ClubsInterests.collection.find({ club: clubName }).fetch(), 'interest');
   return _.extend({}, data, { interests });
@@ -48,18 +48,25 @@ MakeCard.propTypes = {
 
 /* Renders the Project Collection as a set of Cards. */
 const UserLanding = () => {
-  const { ready } = useTracker(() => {
+  const { ready, user } = useTracker(() => {
     // Ensure that minimongo is populated with all collections prior to running render().
     const sub1 = Meteor.subscribe(Clubs.userPublicationName);
     const sub2 = Meteor.subscribe(ClubsInterests.userPublicationName);
     const sub3 = Meteor.subscribe(ProfilesClubs.userPublicationName);
+
+    // eslint-disable-next-line no-shadow
+    const user = Meteor.user();
+
     return {
       ready: sub1.ready() && sub2.ready() && sub3.ready(),
+      user,
     };
   }, []);
-  const clubs = _.pluck(ProfilesClubs.collection.find().fetch(), 'clubName');
-  const clubData = clubs.map(club => getClubData(club));
 
+  const profileEmail = user?.username; // Retrieve the user's email
+
+  const clubs = _.pluck(ProfilesClubs.collection.find({ profileEmail }).fetch(), 'clubName');
+  const clubData = clubs.map(clubName => getProfileClubData(clubName));
   // State to manage selected club in the sidebar
   const [selectedClub, setSelectedClub] = useState(null);
 
