@@ -12,6 +12,12 @@ class HomePage {
     await testController.expect(this.pageSelector.exists).ok();
   }
 
+  // async checkClubs(testController) {
+  //   await testController.expect(this.pageSelector.exists).ok();
+  //   const cardCount = Selector('.card').count;
+  //   await testController.expect(cardCount).gte(1);
+  // }
+
   /* Sets the first name field to a new value, then checks that the update succeeded. */
   async setFirstName(testController, firstName) {
     // Delete text from first name field.
