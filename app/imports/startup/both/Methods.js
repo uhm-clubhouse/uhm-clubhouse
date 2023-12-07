@@ -116,7 +116,11 @@ const removeClubMethod = 'Clubs.remove';
  */
 Meteor.methods({
   'Clubs.remove'({ _id }) {
+    const club = Clubs.collection.findOne({ _id });
     Clubs.collection.remove({ _id });
+    if (club) {
+      ClubsInterests.collection.remove({ club: club.clubName });
+    }
   },
 });
 
