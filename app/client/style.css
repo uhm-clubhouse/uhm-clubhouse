@@ -70,12 +70,3 @@ footer {
 #filter{
   --bs-nav-link-color: black;
 }
-
-.editClubs {
-  padding-left: 100px;
-  padding-bottom: 10px;
-}
-.deleteClubs {
-  padding-left: 30px;
-  padding-bottom: 10px;
-}

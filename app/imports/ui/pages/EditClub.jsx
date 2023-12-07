@@ -25,7 +25,7 @@ const makeSchema = (allInterests) => new SimpleSchema({
   'interests.$': { type: String, allowedValues: allInterests },
 });
 
-/* Renders the Page for adding a project. */
+/* Renders the Page for editing a club. */
 const EditClub = () => {
   const { _id } = useParams();
   // console.log('EditClub', _id);
@@ -53,7 +53,6 @@ const EditClub = () => {
   };
   let fRef = null;
   const allInterests = _.pluck(interests, 'name');
-  // console.log(allInterests);
   const currentClub = clubData.clubName;
   const clubInterests = _.pluck(ClubsInterests.collection.find({ club: currentClub }).fetch(), 'interest');
   const formSchema = makeSchema(allInterests, clubInterests);
@@ -66,7 +65,6 @@ const EditClub = () => {
     interests: clubInterests,
     _id: clubData._id,
   };
-  // console.log(clubInterests);
   /* Render the form. Use Uniforms: https://github.com/vazco/uniforms */
   return ready ? (
     <Container style={pageStyle}>

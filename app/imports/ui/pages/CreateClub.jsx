@@ -24,7 +24,7 @@ const makeSchema = (allInterests) => new SimpleSchema({
   'interests.$': { type: String, allowedValues: allInterests },
 });
 
-/* Renders the Page for adding a project. */
+/* Renders the Page for adding a club. */
 const CreateClub = () => {
 
   /* On submit, insert the data. */
