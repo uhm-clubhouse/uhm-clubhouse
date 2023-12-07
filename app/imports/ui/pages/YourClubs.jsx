@@ -18,7 +18,9 @@ import { removeClubMethod } from '../../startup/both/Methods';
 function getClubData(clubName) {
   const data = Clubs.collection.findOne({ clubName });
   const interests = _.pluck(ClubsInterests.collection.find({ club: clubName }).fetch(), 'interest');
-  return _.extend({}, data, { interests });
+  // Remove "club" from each interest in the array
+  const cleanedInterests = interests.map(interest => interest.replace(/club/i, ''));
+  return _.extend({}, data, { interests: cleanedInterests });
 }
 
 /* Component for layout out a Club Card. */
@@ -43,6 +45,8 @@ const MakeCard = ({ club }) => {
         }
       });
   };
+  // Access cleanedInterests directly from the getClubData function
+  const cleanedInterests = getClubData(club.clubName).interests;
   return (
     <Col>
       <Card className="h-100">
@@ -54,7 +58,7 @@ const MakeCard = ({ club }) => {
           <Card.Text>
             {club.description}
             <br />
-            {club.interests.map((interest, index) => <Badge key={index} bg="info">{interest}</Badge>)}
+            {cleanedInterests.map((interest, index) => <Badge key={index} bg="info">{interest}</Badge>)}
             <br />
           </Card.Text>
         </Card.Body>
