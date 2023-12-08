@@ -133,7 +133,6 @@ Meteor.methods({
 
 const addProfileAdmin = 'ProfilesAdmin.add';
 
-
 Meteor.methods({
   'ProfilesAdmin.add'({ email }) {
     ProfilesAdmin.collection.insert({ email });

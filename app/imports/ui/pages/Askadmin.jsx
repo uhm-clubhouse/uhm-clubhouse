@@ -29,7 +29,7 @@ const Askadmin = () => {
       if (error) {
         swal('Error', error.message, 'error');
       } else {
-        swal('Success', 'Club created successfully', 'success').then(() => formRef.reset());
+        swal('Success', 'Request Sent', 'success').then(() => formRef.reset());
       }
     });
   };
