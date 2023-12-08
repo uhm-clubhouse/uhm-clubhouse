@@ -37,13 +37,13 @@ class ProfilesClubsCollection {
 
   // Add a joined club
   addJoinedClub(profileEmail, clubName) {
-    // Check if the bookmark already exists
+    // Check if the club already exists
     const existingJoinedClub = this.collection.findOne({ profileEmail, clubName });
     if (existingJoinedClub) {
-      // If bookmark already exists, update the bookmarked field
+      // If club already exists, update the joined club field
       this.update(existingJoinedClub._id, true);
     } else {
-      // If bookmark doesn't exist, insert a new document with bookmark information
+      // If club doesn't exist, insert a new document with joined club information
       this.insert(profileEmail, clubName, true);
     }
   }
