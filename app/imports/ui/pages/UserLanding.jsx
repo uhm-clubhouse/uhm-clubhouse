@@ -169,7 +169,7 @@ const UserLanding = () => {
             <MakeCard key={selectedClub.clubName} club={selectedClub} updateClubList={updateClubList} />
           ) : (
             <>
-              <h1>Following Clubs</h1>
+              <h1>Joined Clubs</h1>
               <Row xs={1} md={2} lg={4} className="g-2">
                 {localClubData.map((club, index) => (
                   <MakeCard key={index} club={club} updateClubList={updateClubList} />
