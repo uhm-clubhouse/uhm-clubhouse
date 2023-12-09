@@ -18,24 +18,47 @@ const Landing = () => (
     </div>
     <div className="landing-white-background">
       <Container className="justify-content-center text-center">
-        <h2 style={{ color: '#100f0f', paddingBottom: '30px' }}>Get started by first making your profile:</h2>
-        <Link to="/signup">
-          <button
-            type="button"
-            className="btn btn-primary fw-bold"
-            style={{
-              fontSize: '24pt',
-              borderRadius: '0',
-              marginBottom: '30px',
-              color: '#000',
-              backgroundColor: '#fff',
-              border: '2px solid #000',
-              padding: '20px 50px',
-            }}
-          >
-            Sign Up
-          </button>
-        </Link>
+        <h2 style={{ color: '#100f0f', paddingBottom: '30px' }}>Get started by logging in or create a profile:</h2>
+        <Row>
+          <Col>
+            <Link to="/signin">
+              <button
+                type="button"
+                className="btn btn-primary fw-bold"
+                style={{
+                  fontSize: '24pt',
+                  borderRadius: '0',
+                  marginBottom: '30px',
+                  color: '#000',
+                  backgroundColor: '#fff',
+                  border: '2px solid #000',
+                  padding: '20px 50px',
+                }}
+              >
+                Sign In
+              </button>
+            </Link>
+          </Col>
+          <Col>
+            <Link to="/signup">
+              <button
+                type="button"
+                className="btn btn-primary fw-bold"
+                style={{
+                  fontSize: '24pt',
+                  borderRadius: '0',
+                  marginBottom: '30px',
+                  color: '#000',
+                  backgroundColor: '#fff',
+                  border: '2px solid #000',
+                  padding: '20px 50px',
+                }}
+              >
+                Sign Up
+              </button>
+            </Link>
+          </Col>
+        </Row>
       </Container>
     </div>
     <div className="landing-green-background">
@@ -43,10 +66,10 @@ const Landing = () => (
         <h2 style={{ color: '#100f0f' }}>...then find and choose your clubs</h2>
         <Row md={1} lg={2}>
           <Col xs={6}>
-            <Image src="/images/club-listing.png" width={480} />
+            <Image src="/images/final-clublisting.png" width={480} />
           </Col>
           <Col xs={6}>
-            <Image src="/images/following-club.png" width={480} />
+            <Image src="/images/final-clubhome.png" width={480} />
           </Col>
         </Row>
       </Container>
