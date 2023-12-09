@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { Container, Card, Row, Col, Nav, NavDropdown, Button } from 'react-bootstrap';
 import { useTracker } from 'meteor/react-meteor-data';
@@ -9,13 +9,12 @@ import LoadingSpinner from '../components/LoadingSpinner';
 import { pageStyle } from './pageStyles';
 import {  PageIDs } from '../utilities/ids';
 import { ProfilesAdmin } from '../../api/profiles/ProfilesAdmin';
-import { addProfilesClubs, removeProfilesClubs } from '../../startup/both/Methods';
 // eslint-disable-next-line no-unused-vars
 
 /* Gets the Clubs data as well as the Interests associated with the passed Clubs name. */
 function getAdminData(email) {
-  const data = ProfilesAdmin.collection.findOne({ email });
-  return _.extend({}, data);
+  const data = ProfilesAdmin.collection.find({ email });
+  return _.extend(data);
 }
 
 /* Component for layout out a Club Card. */

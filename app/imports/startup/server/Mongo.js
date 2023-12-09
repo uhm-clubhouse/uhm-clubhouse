@@ -92,7 +92,6 @@ if (Meteor.users.find().count() === 0) {
     Meteor.settings.defaultAccounts.forEach(({ email, password, role }) => createUser(email, password, role));
     console.log('Adding profiles to clubs');
     Meteor.settings.defaultProfilesClubs.forEach(pClub => addProfilesClubs(pClub));
-    Meteor.settings.defaultProfilesAdmin.forEach(email => addProfilesAdmins(email));
   } else {
     console.log('Cannot initialize the database!  Please invoke meteor with a settings file.');
   }
