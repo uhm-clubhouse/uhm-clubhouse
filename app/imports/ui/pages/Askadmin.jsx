@@ -59,10 +59,10 @@ const Askadmin = () => {
             <Card>
               <Card.Body>
                 <Row>
-                  <Col xs={6}><TextField id={ComponentIDs.setAdminEmail} label="Email" name="email" showInlineError />
+                  <Col xs={6}><TextField id={ComponentIDs.askAdminEmail} label="Email" name="email" showInlineError />
                   </Col>
                 </Row>
-                <SubmitField id={ComponentIDs.setAdminFormSubmit} value="Submit" />
+                <SubmitField id={ComponentIDs.askAdminFormSubmit} value="Submit" />
                 <ErrorsField />
               </Card.Body>
             </Card>
