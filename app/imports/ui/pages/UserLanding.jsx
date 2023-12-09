@@ -100,6 +100,7 @@ MakeCard.propTypes = {
 
 /* Renders the Project Collection as a set of Cards. */
 const UserLanding = () => {
+  // eslint-disable-next-line no-unused-vars
   const [clubDataState, setClubData] = useState([]); // Rename state variable to clubDataState
   const { ready, user } = useTracker(() => {
     // Ensure that minimongo is populated with all collections prior to running render().
@@ -146,21 +147,25 @@ const UserLanding = () => {
           >
             Club List
           </h2>
-          <ul style={{ listStyle: 'none', padding: 0 }}>
-            {clubDataState.map((club, index) => (
-              <li key={index} style={{ marginBottom: '10px' }}>
-                <Button
-                  variant="light"
-                  block
-                  onClick={() => setSelectedClub(club)}
-                  active={selectedClub && selectedClub.clubName === club.clubName}
-                  style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', marginBottom: '10px' }}
-                >
-                  {abbreviateClubName(club.clubName)}
-                </Button>
-              </li>
-            ))}
-          </ul>
+          {localClubData.length > 0 ? (
+            <ul style={{ listStyle: 'none', padding: 0 }}>
+              {localClubData.map((club, index) => (
+                <li key={index} style={{ marginBottom: '10px' }}>
+                  <Button
+                    variant="light"
+                    block
+                    onClick={() => setSelectedClub(club)}
+                    active={selectedClub && selectedClub.clubName === club.clubName}
+                    style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', marginBottom: '10px' }}
+                  >
+                    {abbreviateClubName(club.clubName)}
+                  </Button>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p>No joined clubs</p>
+          )}
         </Col>
 
         {/* Main Content */}
