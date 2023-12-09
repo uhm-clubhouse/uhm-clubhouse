@@ -9,7 +9,7 @@ class ProfilesAdminCollection {
     this.collection = new Mongo.Collection(this.name);
     // Define the structure of each document in the collection.
     this.schema = new SimpleSchema({
-      email: { type: String },
+      email: String,
     });
     // Ensure collection documents obey schema.
     this.collection.attachSchema(this.schema);
