@@ -1,41 +1,41 @@
 import React, { useState } from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Badge, Container, Card, Row, Col, Nav, NavDropdown, Button } from 'react-bootstrap';
+import { Container, Card, Row, Col, Nav, NavDropdown, Button } from 'react-bootstrap';
 import { useTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { _ } from 'meteor/underscore';
 // eslint-disable-next-line no-unused-vars
 import LoadingSpinner from '../components/LoadingSpinner';
 import { pageStyle } from './pageStyles';
-import { ComponentIDs, PageIDs } from '../utilities/ids';
+import {  PageIDs } from '../utilities/ids';
 import { ProfilesAdmin } from '../../api/profiles/ProfilesAdmin';
+import { addProfilesClubs, removeProfilesClubs } from '../../startup/both/Methods';
 // eslint-disable-next-line no-unused-vars
 
 /* Gets the Clubs data as well as the Interests associated with the passed Clubs name. */
 function getAdminData(email) {
-  const data = ProfilesAdmin.collection.find({ email });
+  const data = ProfilesAdmin.collection.findOne({ email });
   return _.extend({}, data);
 }
 
 /* Component for layout out a Club Card. */
 const MakeCard = ({ emailB }) => {
-  const displayError = (error, result) => {
-    if (error) {
-      console.log('Error:', error);
-    } else {
-      console.log('Document removed:', result);
-    }
-  };
+
 
   return (
-    <Col>
+    <Col xs={6}>
+      <AutoForm>
       <Card className="h-100">
         <Card.Header>
           <Card.Title style={{ marginTop: '0px' }}>{emailB.email}</Card.Title>
         </Card.Header>
         <Card.Body>
+          <Card.Text>
+            {emailB.email}
+          </Card.Text>
         </Card.Body>
       </Card>
+      </AutoForm>
     </Col>
   );
 };
@@ -54,10 +54,6 @@ const Setadmin = () => {
       profilesClubs: ProfilesAdmin.collection.find().fetch(),
     };
   }, []);
-
-  const clubs = _.pluck(ProfilesAdmin.collection.find().fetch(), 'Email');
-  const clubData = clubs.map(email => getAdminData(email));
-
 
   return ready ? (
     <Container id={PageIDs.setAdminPage} style={pageStyle}>
