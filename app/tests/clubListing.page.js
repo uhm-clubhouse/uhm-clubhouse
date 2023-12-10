@@ -31,6 +31,12 @@ class ClubListingPage {
     await testController.expect(cardCount).gte(1);
   }
 
+  async joinOrLeaveClub(testController) {
+    await this.isDisplayed(testController);
+    const joinButton = Selector('#join-button');
+    await testController.click(joinButton);
+  }
+
   /** Checks that the current page has at least two clubs on it.  */
   async hasDefaultClubs(testController) {
     const cardCount = Selector('.card').count;
