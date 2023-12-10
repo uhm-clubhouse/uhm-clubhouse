@@ -75,7 +75,7 @@ test('Test that club listing page displays and the filter and search function wo
   await clubListing.goToSearch(testController);
 });
 
-test.only('Test that an user can join or leave a club', async (testController) => {
+test('Test that an user can join or leave a club', async (testController) => {
   await navBar.ensureLogout(testController);
   await navBar.gotoSignInPage(testController);
   await signInPage.signin(testController, credentials.username, credentials.password);
