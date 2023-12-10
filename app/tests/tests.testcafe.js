@@ -9,6 +9,7 @@ import { createClubPage } from './createClub.page';
 import { setAdminPage } from './setAdmin.page';
 import { editClubPage } from './editClub.page';
 import { askAdminPage } from './askAdmin.page';
+import { homePage } from './home.page';
 /* global fixture:false, test:false */
 
 /** Credentials for one of the sample users defined in settings.development.json. */
@@ -51,7 +52,7 @@ test('Test that an user can log in and sign out', async (testController) => {
   await navBar.ensureLogout(testController);
   await navBar.gotoSignInPage(testController);
   await signInPage.signin(testController, credentials.username, credentials.password);
-  await clubListing.isDisplayed(testController);
+  await homePage.isDisplayed(testController);
   await navBar.ensureLogout(testController);
 });
 
@@ -75,20 +76,23 @@ test('Test that club listing page displays and the filter and search function wo
   await clubListing.goToSearch(testController);
 });
 
-test('Test that an user can join or leave a club', async (testController) => {
+test('Test that an user can join a club and view it on the home page', async (testController) => {
   await navBar.ensureLogout(testController);
   await navBar.gotoSignInPage(testController);
   await signInPage.signin(testController, credentials.username, credentials.password);
   await navBar.gotoClubListingPage(testController);
   await clubListing.isDisplayed(testController);
   await clubListing.joinOrLeaveClub(testController);
+  await navBar.gotoHomePage(testController);
+  await homePage.isDisplayed(testController);
+  await homePage.checkClubAndLeave(testController);
 });
 
 test('Test that admin can log in and sign out', async (testController) => {
   await navBar.ensureLogout(testController);
   await navBar.gotoSignInPage(testController);
   await signInPage.signin(testController, credentials.adminusername, credentials.adminpassword);
-  await clubListing.isDisplayed(testController);
+  await homePage.isDisplayed(testController);
   await navBar.ensureLogout(testController);
 });
 
@@ -111,13 +115,16 @@ test('Test that club listing page displays and the filter and search function wo
   await clubListing.goToSearch(testController);
 });
 
-test('Test that an admin can join or leave a club', async (testController) => {
+test('Test that an admin can join a club and view it on the home page', async (testController) => {
   await navBar.ensureLogout(testController);
   await navBar.gotoSignInPage(testController);
   await signInPage.signin(testController, credentials.adminusername, credentials.adminpassword);
   await navBar.gotoClubListingPage(testController);
   await clubListing.isDisplayed(testController);
   await clubListing.joinOrLeaveClub(testController);
+  await navBar.gotoHomePage(testController);
+  await homePage.isDisplayed(testController);
+  await homePage.checkClubAndLeave(testController);
 });
 
 test('Test that your clubs page and editing a club works for admins', async (testController) => {
@@ -155,7 +162,7 @@ test('Test that super admin can log in and sign out', async (testController) => 
   await navBar.ensureLogout(testController);
   await navBar.gotoSignInPage(testController);
   await signInPage.signin(testController, credentials.sadminusername, credentials.sadminpassword);
-  await clubListing.isDisplayed(testController);
+  await homePage.isDisplayed(testController);
   await navBar.ensureLogout(testController);
 });
 
@@ -170,13 +177,16 @@ test('Test that club listing page displays and filter and search function works 
   await clubListing.goToSearch(testController);
 });
 
-test('Test that a super admin can join or leave a club', async (testController) => {
+test('Test that a super admin can join a club and view it on the home page', async (testController) => {
   await navBar.ensureLogout(testController);
   await navBar.gotoSignInPage(testController);
   await signInPage.signin(testController, credentials.sadminusername, credentials.sadminpassword);
   await navBar.gotoClubListingPage(testController);
   await clubListing.isDisplayed(testController);
   await clubListing.joinOrLeaveClub(testController);
+  await navBar.gotoHomePage(testController);
+  await homePage.isDisplayed(testController);
+  await homePage.checkClubAndLeave(testController);
 });
 
 test('Test that your clubs page and editing a club works for super admins', async (testController) => {

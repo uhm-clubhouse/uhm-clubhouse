@@ -136,7 +136,7 @@ const UserLanding = () => {
   };
 
   return ready ? (
-    <Container fluid id={PageIDs.clubsPage} style={pageStyle}>
+    <Container fluid id={PageIDs.homePage} style={pageStyle}>
       <Row>
         {/* Sidebar */}
         <Col xs={3} md={2} style={{ maxWidth: '215px', borderRight: '1px solid #ccc', height: '100vh', overflowY: 'auto', overflowX: 'hidden', paddingRight: '15px', paddingTop: '15px' }}>
