@@ -24,7 +24,7 @@ class ClubListingPage {
   /** Checks that the search function works */
   async goToSearch(testController) {
     await this.isDisplayed(testController);
-    const interest = ' ';
+    const interest = 'club';
     const searchInput = Selector(`#${ComponentIDs.clubListingSearch}`);
     await testController.typeText(searchInput, interest);
     const cardCount = Selector('.card').count;
