@@ -12,7 +12,6 @@ import SignOut from '../pages/SignOut';
 import NavBar from '../components/NavBar';
 import SignIn from '../pages/SignIn';
 import NotAuthorized from '../pages/NotAuthorized';
-import Home from '../pages/Home';
 import CreateClub from '../pages/CreateClub';
 import ClubsPage from '../pages/ClubListing';
 import LoadingSpinner from '../components/LoadingSpinner';
@@ -75,7 +74,7 @@ ProtectedRoute.propTypes = {
 };
 
 ProtectedRoute.defaultProps = {
-  children: <Home />,
+  children: <UserLanding />,
 };
 
 AdminProtectedRoute.propTypes = {
@@ -85,7 +84,7 @@ AdminProtectedRoute.propTypes = {
 
 AdminProtectedRoute.defaultProps = {
   ready: false,
-  children: <Home />,
+  children: <UserLanding />,
 };
 
 export default App;
