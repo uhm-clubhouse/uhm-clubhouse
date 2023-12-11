@@ -9,14 +9,12 @@ import { ComponentIDs } from '../utilities/ids';
 
 const NavBar = () => {
   // useTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker
-  const { currentUser, loggedIn } = useTracker(() => ({
+  const { currentUser } = useTracker(() => ({
     currentUser: Meteor.user() ? Meteor.user().username : '',
-    loggedIn: !!Meteor.user(),
   }), []);
-  const menuStyle = { marginBottom: '0px' };
-  const navbarClassName = loggedIn ? 'bg-dark' : 'bg-light';
+  const menuStyle = { marginBottom: '0px', background: '#f6f6f6' };
   return (
-    <Navbar expand="lg" style={menuStyle} className={navbarClassName}>
+    <Navbar expand="lg" style={menuStyle}>
       <Container>
         <Navbar.Brand as={NavLink} to="/" className="align-items-center">
           <span style={{ fontWeight: 800, fontSize: '24px' }}><Image src="/images/uhm-clubhouse-logo.png" width={100} style={{ marginBottom: 3 }} /> UHM Clubhouse</span>
