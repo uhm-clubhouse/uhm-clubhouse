@@ -67,6 +67,9 @@ const Setadmin = () => {
       <Row className="text-center">
         <h3>Admin Request</h3>
       </Row>
+      <Row className="text-center">
+        <h5>Instructions: To make someone an admin please email them with sadmin@foo.com email for password. Once username and password are gained place their account in "defaultAccounts" data located in app>.deploy>settings.json using the same structure as the other default accounts with role set to admin. Using Intellij open console the change to .deploy directory. Use mup stop, then mup setup and then mup deploy to update user role.</h5>
+      </Row>
       <Row className="g-2 justify-content-center">
         {requestData.map((request, index) => (
           <MakeCard key={index} request={request} />
