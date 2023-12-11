@@ -1,9 +1,4 @@
 import { Meteor } from 'meteor/meteor';
-import { Projects } from '../../api/projects/Projects';
-import { Profiles } from '../../api/profiles/Profiles';
-import { ProfilesInterests } from '../../api/profiles/ProfilesInterests';
-import { ProfilesProjects } from '../../api/profiles/ProfilesProjects';
-import { ProjectsInterests } from '../../api/projects/ProjectsInterests';
 import { Clubs } from '../../api/clubs/Clubs';
 import { ClubsInterests } from '../../api/clubs/ClubsInterests';
 import { ProfilesClubs } from '../../api/profiles/ProfilesClubs';
@@ -112,4 +107,4 @@ Meteor.methods({
   },
 });
 
-export { addProfileAdmin, updateProfileMethod, addProjectMethod, createClubMethod, updateClubMethod, removeClubMethod, addProfilesClubs, removeProfilesClubs };
+export { addProfileAdmin, createClubMethod, updateClubMethod, removeClubMethod, addProfilesClubs, removeProfilesClubs };
