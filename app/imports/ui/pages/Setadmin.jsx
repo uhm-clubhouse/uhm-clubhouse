@@ -68,7 +68,8 @@ const Setadmin = () => {
         <h3>Admin Request</h3>
       </Row>
       <Row className="text-center">
-        <h5>Instructions: To make someone an admin please email them with sadmin@foo.com email for password. Once username and password are gained place their account in "defaultAccounts" data located in app>.deploy>settings.json using the same structure as the other default accounts with role set to admin. Using Intellij open console the change to .deploy directory. Use mup stop, then mup setup and then mup deploy to update user role.</h5>
+        {/* eslint-disable-next-line react/no-unescaped-entities,max-len */}
+        <h5>Instructions: To make someone an admin please email them with sadmin@foo.com email for password. Once the username and password are gained, place their account in "defaultAccounts" data located in the app directory, inside the .deploy folder, within the settings.json file using the same structure as the other default accounts with its role set to admin. Using IntelliJ, open the console and change to .deploy directory. Use mup stop, mup setup, and then mup deploy to update the user role.</h5>
       </Row>
       <Row className="g-2 justify-content-center">
         {requestData.map((request, index) => (

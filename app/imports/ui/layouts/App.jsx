@@ -19,6 +19,7 @@ import ClubsPage from '../pages/ClubListing';
 import LoadingSpinner from '../components/LoadingSpinner';
 import YourClubs from '../pages/YourClubs';
 import EditClub from '../pages/EditClub';
+// eslint-disable-next-line import/no-named-as-default,import/no-named-as-default-member
 import Setadmin from '../pages/Setadmin';
 import Askadmin from '../pages/Askadmin';
 
