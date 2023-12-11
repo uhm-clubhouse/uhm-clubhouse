@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Container, Card, Row, Col } from 'react-bootstrap';
+import { Container, Card, Row, Col, Button } from 'react-bootstrap';
 import { useTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { _ } from 'meteor/underscore';
@@ -11,28 +11,38 @@ import { PageIDs } from '../utilities/ids';
 import { ProfilesAdmin } from '../../api/profiles/ProfilesAdmin';
 // eslint-disable-next-line no-unused-vars
 
-/* Gets the Clubs data as well as the Interests associated with the passed Clubs name. */
+/* Gets the Request data */
 function getAdminData(email) {
   const data = ProfilesAdmin.collection.findOne({ email });
   const requests = _.pluck(ProfilesAdmin.collection.find({ email: email }).fetch(), 'email');
   return _.extend({}, data, { requests });
 }
 
-/* Component for layout out a Club Card. */
-const MakeCard = ({ request }) => (
-  <Col xs={4}>
-    <Card className="h-100">
-      <Card.Header>
-        <Card.Title style={{ marginTop: '0px' }}>{request.email}</Card.Title>
-      </Card.Header>
-      <Card.Body>
-        <Card.Text>
-          {request.email} is requesting to be an admin.
-        </Card.Text>
-      </Card.Body>
-    </Card>
-  </Col>
-);
+/* Component for layout out a Request Card. */
+const MakeCard = ({ request }) => {
+  const [visible, setVisible] = useState(true);
+
+  const handleHide = () => {
+    setVisible(false);
+  };
+
+  return (
+    visible && (
+      <Col xs={4}>
+        <Card className="h-100">
+          <Card.Header>
+            <Button onClick={handleHide}>
+              Hide
+            </Button>
+          </Card.Header>
+          <Card.Body>
+            <Card.Text>{request.email} is requesting to be an admin.</Card.Text>
+          </Card.Body>
+        </Card>
+      </Col>
+    )
+  );
+};
 
 MakeCard.propTypes = {
   request: PropTypes.shape({
